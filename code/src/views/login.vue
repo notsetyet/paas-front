@@ -1,31 +1,34 @@
 <template>
-    <div class="login">
-        <Card class="loginCard">
-            <Tabs v-model="loginInfo.tapValue">
-                <TabPane label="登录" name="login">
-                    <Form :model="loginInfo" :label-width="80">
-                        <img src="../../public/title.png" id="pic" />
-                        <p class="tip1" v-show="loginInfo.showtip">{{ loginInfo.tip }}</p>
-                        <FormItem class="namebox" label="用户名"><Input type="text" class="name" v-model="loginInfo.userName" /></FormItem>
-                        <FormItem label="密码"><Input type="password" class="password" v-model="loginInfo.passWord" /></FormItem>
-                        <FormItem><Button class="button" v-on:click="login" type="primary">登录</Button></FormItem>
-                    </Form>
-                </TabPane>
-                <TabPane label="注册" name="register">
-                    <Form :model="registerInfo" :label-width="80">
-                        <FormItem label="用户名">
-                            <Input class="name" v-model="registerInfo.userName" placeholder="用户名不能包含数字和字母以外的字符，长度为6-16" />
-                        </FormItem>
+    <div class="layout-content">
+        <div class="login">
+            <Card class="loginCard">
+                <Tabs v-model="loginInfo.tapValue">
+                    <TabPane label="登录" name="login">
+                        <Form :model="loginInfo" :label-width="80">
+                            <img src="../../public/title.png" id="pic" />
+                            <p class="tip1" v-show="loginInfo.showtip">{{ loginInfo.tip }}</p>
+                            <FormItem class="namebox" label="用户名"><Input type="text" class="name" v-model="loginInfo.userName" /></FormItem>
+                            <FormItem label="密码"><Input type="password" class="password" v-model="loginInfo.passWord" /></FormItem>
+                            <FormItem><Button class="button" v-on:click="login" type="primary">登录</Button></FormItem>
+                        </Form>
+                    </TabPane>
+                    <TabPane label="注册" name="register">
+                        <Form :model="registerInfo" :label-width="80">
+                            <FormItem label="用户名">
+                                <Input class="name" v-model="registerInfo.userName" placeholder="用户名不能包含数字和字母以外的字符，长度为6-16" />
+                            </FormItem>
 
-                        <FormItem label="邮箱"><Input class="password" type="email" v-model="registerInfo.email" /></FormItem>
-                        <FormItem label="密码"><Input class="password" type="password" v-model="registerInfo.passWord" /></FormItem>
-                        <FormItem label="确认密码"><Input class="password" type="password" v-model="registerInfo.repeat" /></FormItem>
-                        <FormItem><Button class="button" v-on:click="sign" type="primary">注册</Button></FormItem>
-                    </Form>
-                </TabPane>
-            </Tabs>
-        </Card>
+                            <FormItem label="邮箱"><Input class="password" type="email" v-model="registerInfo.email" /></FormItem>
+                            <FormItem label="密码"><Input class="password" type="password" v-model="registerInfo.passWord" /></FormItem>
+                            <FormItem label="确认密码"><Input class="password" type="password" v-model="registerInfo.repeat" /></FormItem>
+                            <FormItem><Button class="button" v-on:click="sign" type="primary">注册</Button></FormItem>
+                        </Form>
+                    </TabPane>
+                </Tabs>
+            </Card>
+        </div>
     </div>
+
 </template>
 
 <script>
@@ -180,11 +183,11 @@
         -webkit-filter: grayscale(20%);
     }
     .loginCard {
-        width: 30%;
-        margin-left: 33%;
-        margin-top: 11.875rem;
-        margin-bottom: 11rem;
-        length: 20%;
+        width: 40%;
+        margin-left: 20%;
+        margin-top: 0;
+        /*margin-bottom: 11rem;*/
+        length: 30%;
     }
     .namebox {
         margin-top: 3rem;

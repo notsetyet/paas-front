@@ -23,6 +23,11 @@ const routes = [
         name: 'ServiceList',
         component: () => import('../views/ServiceList.vue')
     },
+    {
+        path: '/create-container',
+        name: 'CreateContainer',
+        component: () => import('../views/CreateContainer.vue')
+    },
 ]
 
 const router = new VueRouter({
