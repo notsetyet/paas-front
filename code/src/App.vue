@@ -5,6 +5,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    height: 100%;
 }
 
 .layout {
@@ -13,6 +14,7 @@
     position: relative;
     border-radius: 4px;
     overflow: hidden;
+    height: 100%;
 }
 
 .layout-breadcrumb {
@@ -72,7 +74,7 @@
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
         <Row type="flex">
             <i-col :span="spanLeft" class="layout-menu-left">
-                <Menu active-key="1" theme="dark" width="auto">
+                <Menu v-if="this.uid.length!=0" active-key="1" theme="dark" width="auto">
                     <div class="layout-logo-left"></div>
                     <Submenu v-if="uid != null" key="1">
                         <template slot="title">
@@ -104,6 +106,19 @@
                     <i-button type="text" @click="toggleClick" style="float: left">
                         <Icon type="ios-code" size="32"></Icon>
                     </i-button>
+<!--                    &lt;!&ndash;            无法显示&ndash;&gt;-->
+<!--                    把用户放到左侧还是sidebar上-->
+<!--                    <i-button @click="login" v-if="uid.length===0" type="default" style="float: right">登录/注册</i-button>-->
+<!--                    <Dropdown style="float: right">-->
+<!--                        <a v-if="uid.length!=0" style="font-size: medium; color: black;">-->
+<!--                            {{this.username}}-->
+<!--                            <Icon type="arrow-down"></Icon>-->
+<!--                        </a>-->
+<!--                        <Dropdown-menu slot="list">-->
+<!--                            <Dropdown-item to="/personal">个人简介</Dropdown-item>-->
+<!--                            <Dropdown-item divided @click="logout">注销</Dropdown-item>-->
+<!--                        </Dropdown-menu>-->
+<!--                    </Dropdown>-->
                 </div>
                 <router-view />
                 <div class="layout-copy">
@@ -119,15 +134,15 @@
 export default {
       mounted() {
         this.fresh();
-       
-  },
+
+      },
 
     data() {
         return {
             spanLeft: 5,
             spanRight: 19,
-            username: "",
-            uid: ""
+            username: "123",
+            uid: "1"
         }
     },
     computed: {
@@ -137,17 +152,17 @@ export default {
     },
     methods: {
         logout() {
-      localStorage.clear();
-      this.$Message.success("注销成功 跳转回首页");
-      this.$router.push({ path:'/' });
-      this.fresh();
+          localStorage.clear();
+          this.$Message.success("注销成功 跳转回首页");
+          this.$router.push({ path:'/' });
+          this.fresh();
         },
         fresh() {
-      this.uid = localStorage.getItem("uid");
-      this.username = localStorage.getItem("username");
-      this.utype = localStorage.getItem("utype");
-      console.log('type:'+this.utype)
-      if (this.uid != null) this.$Message.success("欢迎回来！" + this.username);
+          this.uid = localStorage.getItem("uid");
+          this.username = localStorage.getItem("username");
+          this.utype = localStorage.getItem("utype");
+          console.log('type:'+this.utype)
+          if (this.uid != null) this.$Message.success("欢迎回来！" + this.username);
         },
 
         toggleClick() {
@@ -158,7 +173,7 @@ export default {
                 this.spanLeft = 5;
                 this.spanRight = 19;
             }
-        }
+        },
     }
 }
 </script>

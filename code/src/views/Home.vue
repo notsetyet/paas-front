@@ -1,9 +1,8 @@
 <template>
     <div class="home">
-        <h1>Home</h1>
-<Card>
-        <img src="../../public/timg.jpg" id="pic" />
-</Card>
+        <Card>
+            <img src="../../public/timg.jpg" id="pic" />
+        </Card>
     </div>
 </template>
 
@@ -14,6 +13,10 @@
 </script>
 
 <style scoped>
+.home {
+    background-color: white;
+    margin-top: 20px;
+}
 #pic {
         margin-top: 2.5rem;
     }

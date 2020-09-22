@@ -33,6 +33,11 @@ const routes = [
         name: 'ManageContainer',
         component: () => import('../views/ManageContainer.vue')
     },
+    {
+        path: '/personal',
+        name: 'Personal',
+        component: () => import('../views/Personal.vue')
+    },
 ]
 
 const router = new VueRouter({
