@@ -76,7 +76,7 @@
             <i-col :span="spanLeft" class="layout-menu-left">
                 <Menu v-if="this.uid.length!=0" active-key="1" theme="dark" width="auto">
                     <div class="layout-logo-left"></div>
-                    <Submenu key="1">
+                    <Submenu v-if="uid != null" key="1">
                         <template slot="title">
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
                             服务页
@@ -84,32 +84,40 @@
                         <Menu-item key="1-1" to="service-list">服务列表</Menu-item>
                         <Menu-item key="1-1" to="create-container">创建容器</Menu-item>
                     </Submenu>
-                    <Submenu key="2">
+                    <Submenu v-if="uid != null && utype ==3" key="2">
                         <template slot="title">
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
                             管理页
                         </template>
                         <Menu-item key="2-1" to="manage-container">管理容器</Menu-item>
                     </Submenu>
+                    <Menu-item v-if="uid==null" to="/login">登陆注册</Menu-item>
+                    <Submenu v-if="uid!=null" key="3">
+                        <template slot="title">
+                            <Icon type="ios-navigate" :size="iconSize"></Icon>
+                            {{this.username}}
+                        </template>
+                        <Menu-item key="3-1" @click.native="logout">注销</Menu-item>
+                    </Submenu>
                 </Menu>
             </i-col>
             <i-col :span="spanRight">
                 <div class="layout-header">
                     <i-button type="text" @click="toggleClick" style="float: left">
-                        <Icon type="ios-more" size="32"></Icon>
+                        <Icon type="ios-code" size="32"></Icon>
                     </i-button>
-                    <!--            无法显示-->
-                    <i-button @click="login" v-if="uid.length===0" type="default" style="float: right">登录/注册</i-button>
-                    <Dropdown style="float: right">
-                        <a v-if="uid.length!=0" style="font-size: medium; color: black;">
-                            {{this.username}}
-                            <Icon type="arrow-down"></Icon>
-                        </a>
-                        <Dropdown-menu slot="list">
-                            <Dropdown-item to="/personal">个人简介</Dropdown-item>
-                            <Dropdown-item divided @click="logout">注销</Dropdown-item>
-                        </Dropdown-menu>
-                    </Dropdown>
+<!--                    &lt;!&ndash;            无法显示&ndash;&gt;-->
+<!--                    <i-button @click="login" v-if="uid.length===0" type="default" style="float: right">登录/注册</i-button>-->
+<!--                    <Dropdown style="float: right">-->
+<!--                        <a v-if="uid.length!=0" style="font-size: medium; color: black;">-->
+<!--                            {{this.username}}-->
+<!--                            <Icon type="arrow-down"></Icon>-->
+<!--                        </a>-->
+<!--                        <Dropdown-menu slot="list">-->
+<!--                            <Dropdown-item to="/personal">个人简介</Dropdown-item>-->
+<!--                            <Dropdown-item divided @click="logout">注销</Dropdown-item>-->
+<!--                        </Dropdown-menu>-->
+<!--                    </Dropdown>-->
                 </div>
                 <router-view />
                 <div class="layout-copy">
@@ -123,15 +131,17 @@
 
 <script>
 export default {
-    mounted() {
+      mounted() {
         this.fresh();
-    },
+
+      },
+
     data() {
         return {
             spanLeft: 5,
             spanRight: 19,
-            username: "张三",
-            uid: "1"
+            username: "",
+            uid: ""
         }
     },
     computed: {
@@ -140,6 +150,20 @@ export default {
         }
     },
     methods: {
+        logout() {
+          localStorage.clear();
+          this.$Message.success("注销成功 跳转回首页");
+          this.$router.push({ path:'/' });
+          this.fresh();
+        },
+        fresh() {
+          this.uid = localStorage.getItem("uid");
+          this.username = localStorage.getItem("username");
+          this.utype = localStorage.getItem("utype");
+          console.log('type:'+this.utype)
+          if (this.uid != null) this.$Message.success("欢迎回来！" + this.username);
+        },
+
         toggleClick() {
             if (this.spanLeft === 5) {
                 this.spanLeft = 2;
@@ -148,20 +172,6 @@ export default {
                 this.spanLeft = 5;
                 this.spanRight = 19;
             }
-        },
-        login() {
-            this.$router.push({ path:'/login' });
-            this.fresh();
-        },
-        logout() {
-            localStorage.clear();
-            this.$Message.success("注销成功 跳转回登录页");
-            this.$router.push({ path:'/login' });
-            this.fresh();
-        },
-        fresh() {
-            console.log('username:'+this.username);
-            console.log('uid:'+this.uid.length==0);
         },
     }
 }
