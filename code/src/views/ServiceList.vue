@@ -41,6 +41,7 @@
                     <Checkbox value="苹果"></Checkbox>
                     <Checkbox value="西瓜"></Checkbox>
                 </Checkbox-group>
+                <Page :total="100" show-sizer></Page>
             </Card>
         </div>
     </div>

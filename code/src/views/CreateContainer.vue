@@ -10,7 +10,13 @@
         </div>
         <div class="layout-content">
             <Card>
-                <i-button type="primary">下一步</i-button>
+                <Steps :current="current">
+                    <Step title="选择镜像"></Step>
+                    <Step title="配置端口及配额"></Step>
+                    <Step title="配置环境变量"></Step>
+                    <Step title="完成"></Step>
+                </Steps>
+                <i-button type="primary" @click="next">下一步</i-button>
             </Card>
         </div>
     </div>
@@ -18,7 +24,21 @@
 
 <script>
     export default {
-        name: "CreateContainer"
+        data() {
+            return{
+                current:0,
+            };
+        },
+
+        methods: {
+            next () {
+                if (this.current == 3) {
+                    this.current = 0;
+                } else {
+                    this.current += 1;
+                }
+            }
+        }
     }
 </script>
 
