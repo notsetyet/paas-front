@@ -10,21 +10,26 @@
         </div>
         <div class="layout-content">
             <Card style="height: 200px">
-                <i-col span="3" offset="1">
+                <i-col span="1" offset="1">
                     <h4>CPU</h4><br>
                     <h4>CPU</h4><br>
                     <h4>CPU</h4>
                 </i-col>
-                <i-col span="3" offset="4">
-                    <h4>CPU</h4><br>
-                    <h4>CPU</h4><br>
-                    <h4>CPU</h4>
+                <i-col span="6" offset="4">
+                    <Circle :percent="80" stroke-color="#5cb85c">
+                        <span class="demo-circle-inner" style="font-size:24px">80%</span>
+                    </Circle>
                 </i-col>
-                <i-col span="3" offset="7">
-                    <h4>CPU</h4><br>
-                    <h4>CPU</h4><br>
-                    <h4>CPU</h4>
-                </i-col>
+<!--                <i-col span="1" offset="7">-->
+<!--                    <h4>CPU</h4><br>-->
+<!--                    <h4>CPU</h4><br>-->
+<!--                    <h4>CPU</h4>-->
+<!--                </i-col>-->
+<!--                <i-col span="3" offset="7">-->
+<!--                    <h4>CPU</h4><br>-->
+<!--                    <h4>CPU</h4><br>-->
+<!--                    <h4>CPU</h4>-->
+<!--                </i-col>-->
             </Card>
 
             <Card style="margin-top: 30px">

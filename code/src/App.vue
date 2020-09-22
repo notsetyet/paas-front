@@ -5,6 +5,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    height: 100%;
 }
 
 .layout {
@@ -13,6 +14,7 @@
     position: relative;
     border-radius: 4px;
     overflow: hidden;
+    height: 100%;
 }
 
 .layout-breadcrumb {
@@ -72,7 +74,7 @@
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
         <Row type="flex">
             <i-col :span="spanLeft" class="layout-menu-left">
-                <Menu active-key="1" theme="dark" width="auto">
+                <Menu v-if="this.uid.length!=0" active-key="1" theme="dark" width="auto">
                     <div class="layout-logo-left"></div>
                     <Submenu key="1">
                         <template slot="title">
@@ -97,8 +99,17 @@
                         <Icon type="ios-more" size="32"></Icon>
                     </i-button>
                     <!--            无法显示-->
-                    <Button to="/login" v-if="uid==null">登录/注册</Button>
-                    <Button to="/login" v-if="uid!=null">{{this.username}}</Button>
+                    <i-button @click="login" v-if="uid.length===0" type="default" style="float: right">登录/注册</i-button>
+                    <Dropdown style="float: right">
+                        <a v-if="uid.length!=0" style="font-size: medium; color: black;">
+                            {{this.username}}
+                            <Icon type="arrow-down"></Icon>
+                        </a>
+                        <Dropdown-menu slot="list">
+                            <Dropdown-item to="/personal">个人简介</Dropdown-item>
+                            <Dropdown-item divided @click="logout">注销</Dropdown-item>
+                        </Dropdown-menu>
+                    </Dropdown>
                 </div>
                 <router-view />
                 <div class="layout-copy">
@@ -112,12 +123,15 @@
 
 <script>
 export default {
+    mounted() {
+        this.fresh();
+    },
     data() {
         return {
             spanLeft: 5,
             spanRight: 19,
-            username: "",
-            uid: ""
+            username: "张三",
+            uid: "1"
         }
     },
     computed: {
@@ -134,7 +148,21 @@ export default {
                 this.spanLeft = 5;
                 this.spanRight = 19;
             }
-        }
+        },
+        login() {
+            this.$router.push({ path:'/login' });
+            this.fresh();
+        },
+        logout() {
+            localStorage.clear();
+            this.$Message.success("注销成功 跳转回登录页");
+            this.$router.push({ path:'/login' });
+            this.fresh();
+        },
+        fresh() {
+            console.log('username:'+this.username);
+            console.log('uid:'+this.uid.length==0);
+        },
     }
 }
 </script>
