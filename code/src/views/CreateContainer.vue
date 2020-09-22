@@ -11,7 +11,12 @@
         <div class="layout-content">
             <Card>
                 <Steps :current="current">
-                    <Step title="选择镜像"></Step>
+                    <Step title="请选择镜像">
+                        <i-select :model.sync="model1" style="width:300px">
+                            <i-option v-for="item in containerList" :key="item.label" :value="item.name">{{ item.label }}</i-option>
+                        </i-select>
+                        <i-input :value.sync="values" placeholder="请输入镜像名称..." style="width: 300px"></i-input>
+                    </Step>
                     <Step title="配置端口及配额"></Step>
                     <Step title="配置环境变量"></Step>
                     <Step title="完成"></Step>
@@ -27,6 +32,14 @@
         data() {
             return{
                 current:0,
+                containerList: [
+                    {
+                        name: 'beijing',
+                        label: '北京市'
+                    },
+                ],
+                model1: '',
+                values: ''
             };
         },
 

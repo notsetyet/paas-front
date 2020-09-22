@@ -64,21 +64,21 @@
         <i-col :span="spanLeft" class="layout-menu-left">
           <Menu active-key="1" theme="dark" width="auto">
             <div class="layout-logo-left"></div>
-            <Submenu key="1" to="service-list">
+            <Submenu key="1">
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
                 服务页
               </template>
               <Menu-item key="1-1" to="service-list">服务列表</Menu-item>
-              <Menu-item key="1-1">创建容器</Menu-item>
+              <Menu-item key="1-1" to="create-container">创建容器</Menu-item>
             </Submenu>
-            <Submenu key="2" to="service-list">
+            <Submenu key="2">
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
                 管理页
               </template>
-              <Menu-item key="2-1" to="service-list">服务列表</Menu-item>
-              <Menu-item key="2-2" to="create-container">创建容器</Menu-item>
+              <Menu-item key="2-1">服务列表</Menu-item>
+              <Menu-item key="2-2">创建容器</Menu-item>
             </Submenu>
           </Menu>
         </i-col>
