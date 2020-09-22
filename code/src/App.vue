@@ -107,6 +107,7 @@
                         <Icon type="ios-code" size="32"></Icon>
                     </i-button>
 <!--                    &lt;!&ndash;            无法显示&ndash;&gt;-->
+<!--                    把用户放到左侧还是sidebar上-->
 <!--                    <i-button @click="login" v-if="uid.length===0" type="default" style="float: right">登录/注册</i-button>-->
 <!--                    <Dropdown style="float: right">-->
 <!--                        <a v-if="uid.length!=0" style="font-size: medium; color: black;">-->
@@ -140,8 +141,8 @@ export default {
         return {
             spanLeft: 5,
             spanRight: 19,
-            username: "",
-            uid: ""
+            username: "123",
+            uid: "1"
         }
     },
     computed: {
