@@ -28,6 +28,11 @@ const routes = [
         name: 'CreateContainer',
         component: () => import('../views/CreateContainer.vue')
     },
+    {
+        path: '/manage-container',
+        name: 'ManageContainer',
+        component: () => import('../views/ManageContainer.vue')
+    },
 ]
 
 const router = new VueRouter({
