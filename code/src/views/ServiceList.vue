@@ -1,7 +1,7 @@
 <template>
     <div class="servicelist">
         <div class="layout-breadcrumb">
-            <Breadcrumb>
+            <Breadcrumb style="float: left">
                 <BreadcrumbItem to="/">首页</BreadcrumbItem>
                 <BreadcrumbItem to="/">服务页</BreadcrumbItem>
                 <BreadcrumbItem>服务列表</BreadcrumbItem>

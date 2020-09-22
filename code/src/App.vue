@@ -94,7 +94,7 @@
             <i-col :span="spanRight">
                 <div class="layout-header">
                     <i-button type="text" @click="toggleClick" style="float: left">
-                        <Icon type="ios-people" size="32"></Icon>
+                        <Icon type="ios-more" size="32"></Icon>
                     </i-button>
                     <!--            无法显示-->
                     <Button to="/login" v-if="uid==null">登录/注册</Button>
