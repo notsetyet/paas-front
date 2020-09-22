@@ -47,7 +47,6 @@
                 registerInfo: {
                     userName: '',
                     passWord: '',
-                    email: '',
                     repeat: ''
                 }
             };
@@ -85,17 +84,17 @@
                     this.$Message.error('请输入用户名和密码');
                 } else {
                     axios
-                        .get('http://121.36.48.160:8080/api/login', {
-                            params: { userName: this.loginInfo.userName, passWord: this.loginInfo.passWord }
+                        .post('http://10.128.27.69:8080/login',  null,{
+                            params: { username: this.loginInfo.userName, password: this.loginInfo.passWord }
                         })
                         .then(res => {
                             if (res.data.code != 200) {
-                                this.$Message.error(res.data.message);
+                                alert("登录失败");
                             } else {
                                 this.$Message.success('登录成功');
-                                localStorage.setItem('uid', res.data.data.accountId);
+                                localStorage.setItem('uid', res.data.id);
                                 localStorage.setItem('username', this.loginInfo.userName);
-                                localStorage.setItem('utype', res.data.data.accountType);
+                                localStorage.setItem('utype', res.data.type);
                                 this.goPage();
                             }
                         })
@@ -119,11 +118,6 @@
                     this.$Message.error('用户名太短 请不要少于6个字符');
                     return;
                 }
-                var reg = /^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$/;
-                if(!reg.test(this.registerInfo.email)) {
-                    this.$Message.error('请输入合法的邮箱');
-                    return;
-                }
                 var zg = /^[a-zA-Z0-9]{6,16}$/;
                 if (!zg.test(this.registerInfo.userName)) {
                     this.$Message.error('用户名包含数字字母以外的非法字符');
@@ -133,11 +127,13 @@
                         this.$Message.error('两次密码输入不一致');
                         return;
                     }
+                
                     axios
-                        .post('http://121.36.48.160:8080/api/accounts', {
-                            userName: this.registerInfo.userName,
-                            email: this.registerInfo.email,
-                            passWord: this.registerInfo.passWord
+                        .post('http://10.128.27.69:8080/register', null, {
+                            params: {
+                                username: this.registerInfo.userName,
+                                password: this.registerInfo.passWord
+                            }
                         })
                         .then(res => {
                             console.log(res.data);

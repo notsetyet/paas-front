@@ -82,7 +82,7 @@
                         <Menu-item key="1-1" to="service-list">服务列表</Menu-item>
                         <Menu-item key="1-1" to="create-container">创建容器</Menu-item>
                     </Submenu>
-                    <Submenu v-if="uid != null && utype ==3" key="2">
+                    <Submenu v-if="uid != null && utype ==0" key="2">
                         <template slot="title">
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
                             管理页
