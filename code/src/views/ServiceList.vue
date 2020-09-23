@@ -17,7 +17,8 @@
                 </i-col>
                 <i-col span="6" offset="4">
                     <Circle :percent="80" stroke-color="#5cb85c">
-                        <span class="demo-circle-inner" style="font-size:24px">80%</span>
+                        <span class="demo-circle-inner">80%</span>
+                        <!--  style="font-size:24px" -->
                     </Circle>
                 </i-col>
 <!--                <i-col span="1" offset="7">-->

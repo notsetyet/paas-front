@@ -1,179 +1,172 @@
-<style scoped>
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    height: 100%;
-}
-
-.layout {
-    border: 1px solid #d7dde4;
-    background: #f5f7f9;
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-    height: 100%;
-}
-
-.layout-breadcrumb {
-    padding: 10px 15px 0;
-}
-
-.layout-content {
-    min-height: 200px;
-    margin: 15px;
-    overflow: hidden;
-    background: #fff;
-    border-radius: 4px;
-}
-
-.layout-content-main {
-    padding: 10px;
-}
-
-.layout-copy {
-    text-align: center;
-    padding: 10px 0 20px;
-    color: #9ea7b4;
-}
-
-.layout-menu-left {
-    background: #464c5b;
-}
-
-.layout-header {
-    height: 60px;
-    background: #fff;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
-}
-
-.layout-logo-left {
-    width: 90%;
-    height: 30px;
-    background: #5b6270;
-    border-radius: 3px;
-    margin: 15px auto;
-}
-
-.layout-ceiling-main a {
-    color: #9ba7b5;
-}
-
-.layout-hide-text .layout-text {
-    display: none;
-}
-
-.ivu-col {
-    transition: width .2s ease-in-out;
-}
-</style>
 <template>
-<div id="app">
-    <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
-        <Row type="flex">
-            <i-col :span="spanLeft" class="layout-menu-left">
-                <Menu v-if="this.uid.length!=0" active-key="1" theme="dark" width="auto">
-                    <div class="layout-logo-left"></div>
-                    <Submenu v-if="uid != null" key="1">
-                        <template slot="title">
-                            <Icon type="ios-navigate" :size="iconSize"></Icon>
-                            服务页
-                        </template>
-                        <Menu-item key="1-1" to="service-list">服务列表</Menu-item>
-                        <Menu-item key="1-1" to="create-container">创建容器</Menu-item>
-                    </Submenu>
-                    <Submenu v-if="uid != null && utype ==0" key="2">
-                        <template slot="title">
-                            <Icon type="ios-navigate" :size="iconSize"></Icon>
-                            管理页
-                        </template>
-                        <Menu-item key="2-1" to="manage-container">管理容器</Menu-item>
-                    </Submenu>
-                    <Menu-item v-if="uid==null" to="/login">登陆注册</Menu-item>
-                    <Submenu v-if="uid!=null" key="3">
-                        <template slot="title">
-                            <Icon type="ios-navigate" :size="iconSize"></Icon>
-                            {{this.username}}
-                        </template>
-                        <Menu-item key="3-1" @click.native="logout">注销</Menu-item>
-                    </Submenu>
-                </Menu>
-            </i-col>
-            <i-col :span="spanRight">
-                <div class="layout-header">
-                    <i-button type="text" @click="toggleClick" style="float: left">
-                        <Icon type="ios-code" size="32"></Icon>
-                    </i-button>
-<!--                    &lt;!&ndash;            无法显示&ndash;&gt;-->
-<!--                    把用户放到左侧还是sidebar上-->
-<!--                    <i-button @click="login" v-if="uid.length===0" type="default" style="float: right">登录/注册</i-button>-->
-<!--                    <Dropdown style="float: right">-->
-<!--                        <a v-if="uid.length!=0" style="font-size: medium; color: black;">-->
-<!--                            {{this.username}}-->
-<!--                            <Icon type="arrow-down"></Icon>-->
-<!--                        </a>-->
-<!--                        <Dropdown-menu slot="list">-->
-<!--                            <Dropdown-item to="/personal">个人简介</Dropdown-item>-->
-<!--                            <Dropdown-item divided @click="logout">注销</Dropdown-item>-->
-<!--                        </Dropdown-menu>-->
-<!--                    </Dropdown>-->
-                </div>
-                <router-view />
-                <div class="layout-copy">
-                    2020-2020 &copy; PAAS
-                </div>
-            </i-col>
-        </Row>
+  <div id="app">
+    <div class="layout" :class="{ 'layout-hide-text': spanLeft < 5 }">
+      <Row type="flex">
+        <i-col :span="spanLeft" class="layout-menu-left">
+          <Menu
+            v-if="this.uid && this.uid.length != 0"
+            active-key="1"
+            theme="dark"
+            width="auto"
+          >
+            <div class="layout-logo-left"></div>
+            <Submenu v-if="uid != null" key="1" name="1">
+              <template slot="title">
+                <Icon type="ios-navigate" :size="iconSize"></Icon>
+                服务页
+              </template>
+              <Menu-item key="1-1" to="/service-list">服务列表</Menu-item>
+              <Menu-item key="1-2" to="/create-container">创建容器</Menu-item>
+            </Submenu>
+            <Submenu v-if="uid != null && utype == 0" key="2" name="2">
+              <template slot="title">
+                <Icon type="ios-navigate" :size="iconSize"></Icon>
+                管理页
+              </template>
+              <Menu-item key="2-1" to="/manage-container">管理容器</Menu-item>
+            </Submenu>
+            <Menu-item v-if="uid == null" to="/login">登陆注册</Menu-item>
+            <Submenu v-if="uid != null" key="3" name="3">
+              <template slot="title">
+                <Icon type="ios-navigate" :size="iconSize"></Icon>
+                {{ this.username }}
+              </template>
+              <Menu-item key="3-1" @click.native="logout">注销</Menu-item>
+            </Submenu>
+          </Menu>
+        </i-col>
+        <i-col :span="spanRight">
+          <div class="layout-header">
+            <i-button type="text" @click="toggleClick" style="float: left">
+              <Icon type="ios-code" size="32"></Icon>
+            </i-button>
+          </div>
+          <router-view />
+          <div class="layout-copy">
+            2020-2020 &copy; PAAS
+          </div>
+        </i-col>
+      </Row>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-      mounted() {
-        this.fresh();
+  mounted() {
+    this.fresh();
+  },
 
-      },
-
-    data() {
-        return {
-            spanLeft: 5,
-            spanRight: 19,
-            username: "123",
-            uid: "1"
-        }
+  data() {
+    return {
+      spanLeft: 5,
+      spanRight: 19,
+      username: "123",
+      uid: 1,
+      utype: 1,
+    };
+  },
+  computed: {
+    iconSize() {
+      return this.spanLeft === 5 ? 14 : 24;
     },
-    computed: {
-        iconSize() {
-            return this.spanLeft === 5 ? 14 : 24;
-        }
+  },
+  methods: {
+    logout() {
+      localStorage.clear();
+      this.$Message.success("注销成功 跳转回首页");
+      this.$router.push({ path: "/" });
+      this.fresh();
     },
-    methods: {
-        logout() {
-          localStorage.clear();
-          this.$Message.success("注销成功 跳转回首页");
-          this.$router.push({ path:'/' });
-          this.fresh();
-        },
-        fresh() {
-          this.uid = localStorage.getItem("uid");
-          this.username = localStorage.getItem("username");
-          this.utype = localStorage.getItem("utype");
-          console.log('type:'+this.utype)
-          if (this.uid != null) this.$Message.success("欢迎回来！" + this.username);
-        },
+    fresh() {
+      // this.uid = localStorage.getItem("uid");
+      // this.username = localStorage.getItem("username");
+      // this.utype = localStorage.getItem("utype");
+      console.log("type:" + this.utype);
+      if (this.uid != null) this.$Message.success("欢迎回来！" + this.username);
+    },
 
-        toggleClick() {
-            if (this.spanLeft === 5) {
-                this.spanLeft = 2;
-                this.spanRight = 22;
-            } else {
-                this.spanLeft = 5;
-                this.spanRight = 19;
-            }
-        },
-    }
-}
+    toggleClick() {
+      if (this.spanLeft === 5) {
+        this.spanLeft = 2;
+        this.spanRight = 22;
+      } else {
+        this.spanLeft = 5;
+        this.spanRight = 19;
+      }
+    },
+  },
+};
 </script>
+
+<style scoped>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  height: 100%;
+}
+
+.layout {
+  border: 1px solid #d7dde4;
+  background: #f5f7f9;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.layout-breadcrumb {
+  padding: 10px 15px 0;
+}
+
+.layout-content {
+  min-height: 200px;
+  margin: 15px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.layout-content-main {
+  padding: 10px;
+}
+
+.layout-copy {
+  text-align: center;
+  padding: 10px 0 20px;
+  color: #9ea7b4;
+}
+
+.layout-menu-left {
+  background: #464c5b;
+}
+
+.layout-header {
+  height: 60px;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.layout-logo-left {
+  width: 90%;
+  height: 30px;
+  background: #5b6270;
+  border-radius: 3px;
+  margin: 15px auto;
+}
+
+.layout-ceiling-main a {
+  color: #9ba7b5;
+}
+
+.layout-hide-text .layout-text {
+  display: none;
+}
+
+.ivu-col {
+  transition: width 0.2s ease-in-out;
+}
+</style>
