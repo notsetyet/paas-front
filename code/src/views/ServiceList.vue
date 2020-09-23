@@ -11,32 +11,57 @@
         <div class="layout-content">
             <Card style="height: 200px">
                 <i-col span="1" offset="1">
-                    <h4>CPU</h4><br>
-                    <h4>CPU</h4><br>
-                    <h4>CPU</h4>
+                    <h5>CPU</h5><br>
+                    <h5>已使用</h5>
+                    <p>1000</p><br>
+                    <h5>总配额</h5>
+                    <p>10000</p>
                 </i-col>
-                <i-col span="6" offset="4">
-                    <Circle :percent="80" stroke-color="#5cb85c">
+                <i-col span="2" offset="4">
+                    <i-circle :percent="80" stroke-color="#5cb85c">
                         <span class="demo-circle-inner">80%</span>
                         <!--  style="font-size:24px" -->
-                    </Circle>
+                    </i-circle>
+                </i-col>
+                <i-col span="1" offset="1">
+                    <h5>内存(MB)</h5><br>
+                    <h5>已使用</h5>
+                    <p>1000</p><br>
+                    <h5>总配额</h5>
+                    <p>10000</p>
+                </i-col>
+                <i-col span="2" offset="4">
+                    <i-circle :percent="80" stroke-color="#5cb85c">
+                        <span class="demo-circle-inner">80%</span>
+                        <!--  style="font-size:24px" -->
+                    </i-circle>
+                </i-col>
+                <i-col span="1" offset="1">
+                    <h5>存储(MB)</h5><br>
+                    <h5>已使用</h5>
+                    <p>1000</p><br>
+                    <h5>总配额</h5>
+                    <p>10000</p>
+                </i-col>
+                <i-col span="2" offset="4">
+                    <i-circle :percent="80" stroke-color="#5cb85c">
+                        <span class="demo-circle-inner">80%</span>
+                        <!--  style="font-size:24px" -->
+                    </i-circle>
                 </i-col>
             </Card>
 
             <Card style="margin-top: 30px; ">
-                <i-button type="primary" icon="plus" style="float: left"><span>新建容器</span></i-button><br><br>
-                <h3 style="float: left;">已选择0项</h3><br><br>
-                <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px;margin-bottom:6px;float: left">
-                    <Checkbox
-                            :indeterminate="indeterminate"
-                            :checked="checkAll"
-                            @click.prevent="handleCheckAll">全选</Checkbox>
-                </div>
-                <Checkbox-group :model.sync="checkAllGroup" @on-change="checkAllGroupChange" style="margin-top: 20px;float: left">
-                    <Checkbox value="香蕉"></Checkbox>
-                    <Checkbox value="苹果"></Checkbox>
-                    <Checkbox value="西瓜"></Checkbox>
-                </Checkbox-group>
+                <i-button type="primary" icon="plus" style="float: left" @click="tocreate()"><span>新建容器</span></i-button><br><br>
+                <Table border :columns="columns" :data="data">
+                <template slot-scope="{ row }" slot="name">
+                <strong>{{ row.name }}</strong>
+                </template>
+                <template slot-scope="{ row, index }" slot="action">
+                <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">ON/OFF</Button>
+                <Button type="error" size="small" @click="remove(index)">Delete</Button>
+                </template>
+                </Table>
             </Card>
         </div>
     </div>
@@ -48,10 +73,55 @@
             return {
                 indeterminate: true,
                 checkAll: false,
-                checkAllGroup: ['香蕉', '西瓜']
+                checkAllGroup: ['香蕉', '西瓜'],
+                columns: [
+                    {
+                        title: 'Name',
+                        key: 'name',
+                        width: 200,
+                    },
+                    {
+                        title: 'Mirror',
+                        width: 200,
+                        key: 'mirror'
+                    },
+                    {
+                        title: 'Port',
+                        width: 200,
+                        key: 'port'
+                    },
+                    {
+                        title: 'Statu',
+                        width: 200,
+                        key: 'statu'
+                    },
+                    {
+                        title: 'Action',
+                        slot: 'action',
+                        width: 200,
+                        align: 'center'
+                    }
+                ],
+                data: [
+                    {
+                        name: 'John Brown',
+                        mirror: 18,
+                        port: 'New York No. 1 Lake Park',
+                        statu: 'on'
+                    },
+                    {
+                        name: 'Jim Green',
+                        mirror: 24,
+                        port: 'London No. 1 Lake Park',
+                        statu: 'on'
+                    }
+                ]
             }
         },
         methods: {
+            tocreate(){
+                this.$router.push({ path: "/create-container" });
+            },
             handleCheckAll () {
                 if (this.indeterminate) {
                     this.checkAll = false;

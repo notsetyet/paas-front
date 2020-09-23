@@ -11,18 +11,15 @@
         <div class="layout-content">
             <Card>
 
-            <CellGroup style="text-align: left;">
-            <Cell v-for="(con, index) in conList" :key="index" :title="con.name 
-            +' | '
-            + con.mirror
-            +' | '
-            + con.owner
-            +' | '
-            + con.port">
-                <Button type="primary" slot="extra" style="margin-left: 10px;" >进入容器</Button>
-                <Button type="error" slot="extra" style="margin-left: 10px;">删除</Button>
-            </Cell>
-            </CellGroup>
+            <Table border :columns="columns" :data="data">
+                <template slot-scope="{ row }" slot="name">
+                <strong>{{ row.name }}</strong>
+                </template>
+                <template slot-scope="{ row, index }" slot="action">
+                <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">ON/OFF</Button>
+                <Button type="error" size="small" @click="remove(index)">Delete</Button>
+                </template>
+                </Table>
 
             </Card>
         </div>
@@ -41,6 +38,48 @@
                         owner: '9avatar',
                         port: 'This is the this is.'
                     },
+                ],
+                columns: [
+                    {
+                        title: 'Name',
+                        key: 'name',
+                        width: 200,
+                    },
+                    {
+                        title: 'Mirror',
+                        width: 200,
+                        key: 'mirror'
+                    },
+                    {
+                        title: 'Port',
+                        width: 200,
+                        key: 'port'
+                    },
+                    {
+                        title: 'Statu',
+                        width: 200,
+                        key: 'statu'
+                    },
+                    {
+                        title: 'Action',
+                        slot: 'action',
+                        width: 200,
+                        align: 'center'
+                    }
+                ],
+                data: [
+                    {
+                        name: 'John Brown',
+                        mirror: 18,
+                        port: 'New York No. 1 Lake Park',
+                        statu: 'on'
+                    },
+                    {
+                        name: 'Jim Green',
+                        mirror: 24,
+                        port: 'London No. 1 Lake Park',
+                        statu: 'on'
+                    }
                 ]
             }
         }
