@@ -10,16 +10,17 @@
         </div>
         <div class="layout-content">
             <Card style="height: 200px">
-                <i-col span="1" offset="1">
-                    <h4>CPU</h4><br>
-                    <h4>CPU</h4><br>
-                    <h4>CPU</h4>
-                </i-col>
-                <i-col span="6" offset="4">
-                    <Circle :percent="80" stroke-color="#5cb85c">
-                        <span class="demo-circle-inner" style="font-size:24px">80%</span>
-                    </Circle>
-                </i-col>
+<!--                <i-col span="1" offset="1">-->
+<!--                    <h4>CPU</h4><br>-->
+<!--                    <h4>CPU</h4><br>-->
+<!--                    <h4>CPU</h4>-->
+<!--                </i-col>-->
+<!--                <i-col span="10" offset="4">-->
+<!--                    -->
+<!--                </i-col>-->
+<!--                <Circle :percent="80" stroke-color="#5cb85c">-->
+<!--                    <span class="demo-circle-inner" style="font-size:24px">80%</span>-->
+<!--                </Circle>-->
 <!--                <i-col span="1" offset="7">-->
 <!--                    <h4>CPU</h4><br>-->
 <!--                    <h4>CPU</h4><br>-->
@@ -32,9 +33,9 @@
 <!--                </i-col>-->
             </Card>
 
-            <Card style="margin-top: 30px">
+            <Card style="margin-top: 30px; ">
                 <i-button type="primary" icon="plus" style="float: left"><span>新建容器</span></i-button><br><br>
-                <span style="float: left;">已选择0项</span><br><br>
+                <h3 style="float: left;">已选择0项</h3><br><br>
                 <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px;margin-bottom:6px;float: left">
                     <Checkbox
                             :indeterminate="indeterminate"

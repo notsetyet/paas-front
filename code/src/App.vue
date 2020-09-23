@@ -74,9 +74,9 @@
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
         <Row type="flex">
             <i-col :span="spanLeft" class="layout-menu-left">
-                <Menu v-if="this.uid.length!=0" active-key="1" theme="dark" width="auto">
+                <Menu active-key="1" theme="dark" width="auto">
                     <div class="layout-logo-left"></div>
-                    <Submenu v-if="uid != null" key="1">
+                    <Submenu key="1">
                         <template slot="title">
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
                             服务页
@@ -84,15 +84,15 @@
                         <Menu-item key="1-1" to="service-list">服务列表</Menu-item>
                         <Menu-item key="1-1" to="create-container">创建容器</Menu-item>
                     </Submenu>
-                    <Submenu v-if="uid != null && utype ==0" key="2">
+                    <Submenu v-if="utype ==0" key="2">
                         <template slot="title">
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
                             管理页
                         </template>
                         <Menu-item key="2-1" to="manage-container">管理容器</Menu-item>
                     </Submenu>
-                    <Menu-item v-if="uid==null" to="/login">登陆注册</Menu-item>
-                    <Submenu v-if="uid!=null" key="3">
+                    <Menu-item to="/login">登陆注册</Menu-item>
+                    <Submenu key="3">
                         <template slot="title">
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
                             {{this.username}}
@@ -142,7 +142,8 @@ export default {
             spanLeft: 5,
             spanRight: 19,
             username: "123",
-            uid: "1"
+            uid: "1",
+            utype: 0
         }
     },
     computed: {

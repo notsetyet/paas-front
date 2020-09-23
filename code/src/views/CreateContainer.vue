@@ -1,12 +1,12 @@
 <template>
     <div class="create-container">
         <div class="layout-breadcrumb">
-            <Breadcrumb>
+            <Breadcrumb style="float: left">
                 <BreadcrumbItem to="/">首页</BreadcrumbItem>
                 <BreadcrumbItem to="/">服务页</BreadcrumbItem>
                 <BreadcrumbItem>创建容器</BreadcrumbItem>
             </Breadcrumb>
-            <h2 style="font-weight: bold">创建容器</h2>
+            <h2 style="font-weight: bold; float: left">创建容器</h2>
         </div>
         <div class="layout-content">
             <Card>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="CPU-ability">
                         <span>CPU配额(mCores)：</span>
-                        <Slider style="width: 300px" :value="this.coreValue" :tip-format="format1"></Slider>
+                        <Slider style="width: 300px;" :value="this.coreValue" :tip-format="format1"></Slider>
                     </div>
                     <div class="CPU-ability">
                         <span>内存配额(MiB)：</span>
@@ -54,12 +54,11 @@
                     </div>
                     <Divider></Divider>
                     <div class="port">
-                        <span>开放端口：</span>
-                        <i-input :value.sync="values" placeholder="80" style="width: 300px; margin: 10px"></i-input>
+                        <span>开放端口：<i-input :value.sync="values" placeholder="80" style="width: 300px; margin: 10px"></i-input></span>
                         <br>
-                        <i-input :value.sync="values" placeholder="443" style="width: 300px; margin: 10px"></i-input>
+                        <span><i-input :value.sync="values" placeholder="443" style="width: 300px; margin: 10px"></i-input></span>
                         <br>
-                        <i-input :value.sync="values" placeholder="端口" style="width: 300px; margin: 10px"></i-input>
+                        <span><i-input :value.sync="values" placeholder="端口" style="width: 300px; margin: 10px"></i-input></span>
                         <br>
                         <i-button style="width: 300px; margin: 20px">Add</i-button>
                     </div>
@@ -69,7 +68,7 @@
                     <br>
                     <i-input type="textarea" placeholder="值" style="width: 300px"></i-input>
                     <br>
-                    <i-button type="error" style="width: 300px">删除</i-button>
+                    <i-button type="error" style="width: 300px;margin: 10px">删除</i-button>
                     <Divider></Divider>
                     <i-button style="width: 300px; margin: 20px">Add</i-button>
                 </div>
@@ -145,5 +144,9 @@
 <style scoped>
     .setting{
         margin: 10px;
+    }
+    .CPU-ability{
+        display: flex;
+        justify-content: center;
     }
 </style>
