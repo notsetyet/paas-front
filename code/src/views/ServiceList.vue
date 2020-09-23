@@ -36,7 +36,6 @@
                     <Checkbox value="香蕉"></Checkbox>
                     <Checkbox value="苹果"></Checkbox>
                     <Checkbox value="西瓜"></Checkbox>
-                    <Page :total="100" show-sizer></Page>
                 </Checkbox-group>
             </Card>
         </div>
