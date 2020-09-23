@@ -4,7 +4,6 @@
       <Row type="flex">
         <i-col :span="spanLeft" class="layout-menu-left">
           <Menu
-            v-if="this.uid && this.uid.length != 0"
             active-key="1"
             theme="dark"
             width="auto"
@@ -79,9 +78,9 @@ export default {
       this.fresh();
     },
     fresh() {
-      // this.uid = localStorage.getItem("uid");
-      // this.username = localStorage.getItem("username");
-      // this.utype = localStorage.getItem("utype");
+      this.uid = localStorage.getItem("uid");
+      this.username = localStorage.getItem("username");
+      this.utype = localStorage.getItem("utype");
       console.log("type:" + this.utype);
       if (this.uid != null) this.$Message.success("欢迎回来！" + this.username);
     },
