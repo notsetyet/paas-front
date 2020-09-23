@@ -43,21 +43,26 @@
                     {
                         title: 'Name',
                         key: 'name',
-                        width: 200,
+                        width: 160,
+                    },
+                    {
+                        title: 'Owner',
+                        key: 'owner',
+                        width: 160,
                     },
                     {
                         title: 'Mirror',
-                        width: 200,
+                        width: 160,
                         key: 'mirror'
                     },
                     {
                         title: 'Port',
-                        width: 200,
+                        width: 160,
                         key: 'port'
                     },
                     {
                         title: 'Statu',
-                        width: 200,
+                        width: 160,
                         key: 'statu'
                     },
                     {
@@ -70,12 +75,14 @@
                 data: [
                     {
                         name: 'John Brown',
+                        owner: 'zyj',
                         mirror: 18,
                         port: 'New York No. 1 Lake Park',
                         statu: 'on'
                     },
                     {
                         name: 'Jim Green',
+                        owner: 'zyj',
                         mirror: 24,
                         port: 'London No. 1 Lake Park',
                         statu: 'on'
