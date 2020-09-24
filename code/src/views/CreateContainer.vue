@@ -17,9 +17,12 @@
         </Steps>
         <div class="step1" v-if="current == 0">
           <i-select v-model="image" style="width:300px; margin-top: 10px">
-            <i-option v-for="item in containerList" :key="item.id">{{
-              item.show
-            }}</i-option>
+            <i-option
+              v-for="item in containerList"
+              :key="item.id"
+              :value="item.show"
+              >{{ item.show }}</i-option
+            >
           </i-select>
           <br />
           <i-input
@@ -27,6 +30,30 @@
             placeholder="请输入镜像名称..."
             style="width: 300px; margin: 10px"
           ></i-input>
+          <br />
+          <Button
+            type="primary"
+            style="width: 300px; margin: 10px"
+            @click="modal1 = true"
+            >拉取镜像</Button
+          >
+          <Modal
+            v-model="modal1"
+            title="拉取镜像"
+            @on-ok="ok"
+            @on-cancel="cancel"
+          >
+            <i-input
+              v-model="value1"
+              placeholder="请输入镜像名称..."
+              style="width: 300px; margin: 10px"
+            ></i-input>
+            <i-input
+              v-model="value2"
+              placeholder="请输入镜像版本..."
+              style="width: 300px; margin: 10px"
+            ></i-input>
+          </Modal>
         </div>
         <div class="step2" v-if="current == 1">
           <!--<div class="setting">
@@ -130,6 +157,9 @@ export default {
   },
   data() {
     return {
+      modal1: false,
+      value1: "",
+      value2: "",
       current: 0,
       back: [],
       containerList: [],
@@ -145,22 +175,28 @@ export default {
   },
 
   methods: {
+    ok() {
+      console.log(this.value1);
+      this.$Message.info("Clicked ok");
+    },
+    cancel() {
+      this.$Message.info("Clicked cancel");
+    },
     submit() {
-        console.log(this.image);
-        console.log(this.name);
-        console.log(this.ports);
       axios
         .post(
-          "http://10.128.27.69:8080/containers/create/"+localStorage.getItem("uid"),{
-              image: "nginx:latest",
-              name: this.name,
-              ports: this.ports
+          "http://10.128.27.69:8080/containers/create/" +
+            localStorage.getItem("uid"),
+          {
+            image: "nginx:latest",
+            name: this.name,
+            ports: this.ports,
           }
         )
         .then((res) => {
           console.log(res.data);
-          }
-        );
+          this.$Message.success("创建成功");
+        });
     },
     addport() {
       let tmpData = this.port;

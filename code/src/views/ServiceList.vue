@@ -9,7 +9,7 @@
       <h2 style="font-weight: bold">服务列表</h2>
     </div>
     <div class="layout-content">
-      <Card style="height: 200px">
+      <!--<Card style="height: 200px">
         <i-col span="1" offset="1">
           <h5>CPU</h5>
           <br />
@@ -22,7 +22,6 @@
         <i-col span="2" offset="4">
           <i-circle :percent="80" stroke-color="#5cb85c">
             <span class="demo-circle-inner">80%</span>
-            <!--  style="font-size:24px" -->
           </i-circle>
         </i-col>
         <i-col span="1" offset="1">
@@ -37,7 +36,6 @@
         <i-col span="2" offset="4">
           <i-circle :percent="80" stroke-color="#5cb85c">
             <span class="demo-circle-inner">80%</span>
-            <!--  style="font-size:24px" -->
           </i-circle>
         </i-col>
         <i-col span="1" offset="1">
@@ -52,10 +50,9 @@
         <i-col span="2" offset="4">
           <i-circle :percent="80" stroke-color="#5cb85c">
             <span class="demo-circle-inner">80%</span>
-            <!--  style="font-size:24px" -->
           </i-circle>
         </i-col>
-      </Card>
+      </Card>-->
 
       <Card style="margin-top: 30px; ">
         <i-button
@@ -71,14 +68,23 @@
           </template>
           <template slot-scope="{ row, index }" slot="action">
             <Button
+              v-if="row.status=='running'"
+              type="error"
+              size="small"
+              style="margin-right: 5px"
+              @click="turnoff(row,index)"
+              >关闭</Button
+            >
+            <Button
+              v-if="row.status!='running'"
               type="primary"
               size="small"
               style="margin-right: 5px"
-              @click="show(index)"
-              >ON/OFF</Button
+              @click="turnon(row)"
+              >开启</Button
             >
-            <Button type="error" size="small" @click="remove(index)"
-              >Delete</Button
+            <Button type="error" size="small" @click="remove(row)"
+              >删除</Button
             >
           </template>
         </Table>
@@ -113,9 +119,9 @@ export default {
               this.back[i].Ports[j].Type +
               "}";
           }
+          tmpData.id = this.back[i].Id;
           tmpData.status = this.back[i].State;
           this.data.push(tmpData);
-          console.log(i + "bbb " + this.back.length);
         }
       });
   },
@@ -157,6 +163,36 @@ export default {
     };
   },
   methods: {
+    turnon(r){
+      console.log(r.id);
+      axios
+      .get("http://10.128.27.69:8080/containers/start/" + r.id)
+      .then((res) => {
+        console.log(res);
+        this.$Message.success("开启成功");
+        location.reload();
+      })
+    },
+    turnoff(r,i){
+      console.log(i);
+      axios
+      .get("http://10.128.27.69:8080/containers/stop/" + r.id)
+      .then((res) => {
+        console.log(res);
+        this.$Message.success("关闭成功");
+        location.reload();
+      })
+    },
+    remove(r){
+      console.log(r.id);
+      axios
+      .get("http://10.128.27.69:8080/containers/remove/" + r.id)
+      .then((res) => {
+        console.log(res);
+        this.$Message.success("删除成功");
+        location.reload();
+      })
+    },
     tocreate() {
       this.$router.push({ path: "/create-container" });
     },
