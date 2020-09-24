@@ -43,7 +43,7 @@
 import axios from "axios";
 export default {
   mounted() {
-    axios.get("http://10.128.27.69:8080/images/all").then((res) => {
+    axios.get("http://10.251.253.188:8080/images/all").then((res) => {
       console.log("1");
       console.log(res.data);
       this.back = res.data;
@@ -71,7 +71,7 @@ export default {
     submit(){
         if (this.newp!=this.newpp){alert("新密码不一致");return;}
         axios
-        .post("http://10.128.27.69:8080/user/changePassword/", null, {
+        .post("http://10.251.253.188:8080/user/changePassword/", null, {
           params: {
             id: localStorage.getItem("uid"),
             oldPassword: this.oldp,

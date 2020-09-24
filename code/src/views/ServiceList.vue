@@ -98,7 +98,7 @@ import axios from "axios";
 export default {
   mounted() {
     axios
-      .get("http://10.128.27.69:8080/containers/" + localStorage.getItem("uid"))
+      .get("http://10.251.253.188:8080/containers/" + localStorage.getItem("uid"))
       .then((res) => {
         console.log(res.data);
         this.back = res.data;
@@ -166,7 +166,7 @@ export default {
     turnon(r){
       console.log(r.id);
       axios
-      .get("http://10.128.27.69:8080/containers/start/" + r.id)
+      .get("http://10.251.253.188:8080/containers/start/" + r.id)
       .then((res) => {
         console.log(res);
         this.$Message.success("开启成功");
@@ -176,7 +176,7 @@ export default {
     turnoff(r,i){
       console.log(i);
       axios
-      .get("http://10.128.27.69:8080/containers/stop/" + r.id)
+      .get("http://10.251.253.188:8080/containers/stop/" + r.id)
       .then((res) => {
         console.log(res);
         this.$Message.success("关闭成功");
@@ -186,7 +186,7 @@ export default {
     remove(r){
       console.log(r.id);
       axios
-      .get("http://10.128.27.69:8080/containers/remove/" + r.id)
+      .get("http://10.251.253.188:8080/containers/remove/" + r.id)
       .then((res) => {
         console.log(res);
         this.$Message.success("删除成功");

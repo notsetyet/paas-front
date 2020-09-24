@@ -43,36 +43,36 @@
 import axios from "axios";
 export default {
   mounted() {
-    axios
-      .get("http://10.128.27.69:8080/containers/all" )
-      .then((res) => {
-        console.log(res.data);
-        this.back = res.data;
-        for (let i = 0; i < this.back.length; i++) {
-          //   console.log( this.back[i].Image);
-          let tmpData = {};
-          axios
-       .get("http://10.128.27.69:8080/user/getUsername/"+ this.back[i].Id)
-      .then((res) => {tmpData.id=res.data;});
-          tmpData.name = this.back[i].Names[0];
-          tmpData.mirror = this.back[i].Image;
-          //   console.log('aaa' + " " + this.back[i].Ports.length);
-          tmpData.port = [];
-          for (let j = 0; j < this.back[i].Ports.length; j++) {
-            tmpData.port[j] =
-              "{10.251.253.189:" +
-              this.back[i].Ports[j].PublicPort +
-              "->" +
-              this.back[i].Ports[j].PrivatePort +
-              "/" +
-              this.back[i].Ports[j].Type +
-              "}";
-          }
-          tmpData.id = this.back[i].Id;
-          tmpData.status = this.back[i].State;
-          this.data.push(tmpData);
+    axios.get("http://10.251.253.188:8080/containers/all").then((res) => {
+      console.log(res.data);
+      this.back = res.data;
+      for (let i = 0; i < this.back.length; i++) {
+        //   console.log( this.back[i].Image);
+        let tmpData = {};
+        axios
+          .get("http://10.251.253.188:8080/user/getUsername/" + this.back[i].Id)
+          .then((res) => {
+            tmpData.id = res.data;
+          });
+        tmpData.name = this.back[i].Names[0];
+        tmpData.mirror = this.back[i].Image;
+        //   console.log('aaa' + " " + this.back[i].Ports.length);
+        tmpData.port = [];
+        for (let j = 0; j < this.back[i].Ports.length; j++) {
+          tmpData.port[j] =
+            "{10.251.253.189:" +
+            this.back[i].Ports[j].PublicPort +
+            "->" +
+            this.back[i].Ports[j].PrivatePort +
+            "/" +
+            this.back[i].Ports[j].Type +
+            "}";
         }
-      });
+        tmpData.id = this.back[i].Id;
+        tmpData.status = this.back[i].State;
+        this.data.push(tmpData);
+      }
+    });
   },
   name: "ManageContainer",
   data() {
@@ -113,6 +113,38 @@ export default {
       ],
       data: [],
     };
+  },
+  methods: {
+    turnon(r) {
+      console.log(r.id);
+      axios
+        .get("http://10.251.253.188:8080/containers/start/" + r.id)
+        .then((res) => {
+          console.log(res);
+          this.$Message.success("开启成功");
+          location.reload();
+        });
+    },
+    turnoff(r, i) {
+      console.log(i);
+      axios
+        .get("http://10.251.253.188:8080/containers/stop/" + r.id)
+        .then((res) => {
+          console.log(res);
+          this.$Message.success("关闭成功");
+          location.reload();
+        });
+    },
+    remove(r) {
+      console.log(r.id);
+      axios
+        .get("http://10.251.253.188:8080/containers/remove/" + r.id)
+        .then((res) => {
+          console.log(res);
+          this.$Message.success("删除成功");
+          location.reload();
+        });
+    },
   },
 };
 </script>

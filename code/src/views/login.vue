@@ -84,7 +84,7 @@
                     this.$Message.error('请输入用户名和密码');
                 } else {
                     axios
-                        .post('http://10.128.27.69:8080/login',  null,{
+                        .post('http://10.251.253.188:8080/login',  null,{
                             params: { username: this.loginInfo.userName, password: this.loginInfo.passWord }
                         })
                         .then(res => {
@@ -129,7 +129,7 @@
                     }
                 
                     axios
-                        .post('http://10.128.27.69:8080/register', null, {
+                        .post('http://10.251.253.188:8080/register', null, {
                             params: {
                                 username: this.registerInfo.userName,
                                 password: this.registerInfo.passWord

@@ -123,7 +123,7 @@
 import axios from "axios";
 export default {
   mounted() {
-    axios.get("http://10.128.27.69:8080/images/all").then((res) => {
+    axios.get("http://10.251.253.188:8080/images/all").then((res) => {
       console.log("1");
       console.log(res.data);
       this.back = res.data;
@@ -165,7 +165,7 @@ export default {
       console.log(this.value1);
       this.spinShow=true;
       axios
-        .post("http://10.128.27.69:8080/images/pull/", null, {
+        .post("http://10.251.253.188:8080/images/pull/", null, {
           params: {
             imageName: this.value1,
             tag: this.value2,
@@ -185,7 +185,7 @@ export default {
     submit() {
       axios
         .post(
-          "http://10.128.27.69:8080/containers/create/" +
+          "http://10.251.253.188:8080/containers/create/" +
             localStorage.getItem("uid"),
           {
             image: "nginx:latest",
