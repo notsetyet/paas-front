@@ -18,7 +18,7 @@
                                 <Input class="name" v-model="registerInfo.userName" placeholder="用户名不能包含数字和字母以外的字符，长度为6-16" />
                             </FormItem>
 
-                            <FormItem label="邮箱"><Input class="password" type="email" v-model="registerInfo.email" /></FormItem>
+                        
                             <FormItem label="密码"><Input class="password" type="password" v-model="registerInfo.passWord" /></FormItem>
                             <FormItem label="确认密码"><Input class="password" type="password" v-model="registerInfo.repeat" /></FormItem>
                             <FormItem><Button class="button" v-on:click="sign" type="primary">注册</Button></FormItem>

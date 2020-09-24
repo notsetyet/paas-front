@@ -14,24 +14,24 @@
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
                 服务页
               </template>
-              <Menu-item key="1-1" to="/service-list">服务列表</Menu-item>
-              <Menu-item key="1-2" to="/create-container">创建容器</Menu-item>
+              <Menu-item name="sl" key="1-1" to="/service-list">服务列表</Menu-item>
+              <Menu-item name="cc" key="1-2" to="/create-container">创建容器</Menu-item>
             </Submenu>
             <Submenu v-if="uid != null && utype == 0" key="2" name="2">
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
                 管理页
               </template>
-              <Menu-item key="2-1" to="/manage-container">管理容器</Menu-item>
+              <Menu-item name="mc" key="2-1" to="/manage-container">管理容器</Menu-item>
             </Submenu>
-            <Menu-item v-if="uid == null" to="/login">登陆注册</Menu-item>
+            <Menu-item name="lr" v-if="uid == null" to="/login">登陆注册</Menu-item>
             <Submenu v-if="uid != null" key="3" name="3">
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
                 {{ this.username }}
               </template>
-              <Menu-item key="3-1" @click.native="logout">注销</Menu-item>
-              <Menu-item key="3-2" to="/changepassword">修改密码</Menu-item>
+              <Menu-item name="lo" key="3-1" @click.native="logout">注销</Menu-item>
+              <Menu-item name="cp" key="3-2" to="/changepassword">修改密码</Menu-item>
             </Submenu>
           </Menu>
         </i-col>
