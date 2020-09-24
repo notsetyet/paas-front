@@ -51,6 +51,9 @@ export default {
         for (let i = 0; i < this.back.length; i++) {
           //   console.log( this.back[i].Image);
           let tmpData = {};
+          axios
+       .get("http://10.128.27.69:8080/user/getUsername/"+ this.back[i].Id)
+      .then((res) => {tmpData.id=res.data;});
           tmpData.name = this.back[i].Names[0];
           tmpData.mirror = this.back[i].Image;
           //   console.log('aaa' + " " + this.back[i].Ports.length);
@@ -83,7 +86,7 @@ export default {
         },
         {
           title: "Owner",
-          key: "owner",
+          key: "id",
           width: 160,
         },
         {

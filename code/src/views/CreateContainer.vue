@@ -6,28 +6,27 @@
         <BreadcrumbItem to="/">服务页</BreadcrumbItem>
         <BreadcrumbItem>创建容器</BreadcrumbItem>
       </Breadcrumb>
-      <h2 style="font-weight: bold; float: left">创建容器</h2>
+      <h2 style="font-weight: bold;">创建容器</h2>
     </div>
     <div class="layout-content">
       <Card>
         <Steps :current="current">
           <Step title="请选择镜像"></Step>
-          <Step title="配置端口及配额"></Step>
-          <Step title="配置环境变量"></Step>
+          <Step title="配置端口"></Step>
         </Steps>
         <div class="step1" v-if="current == 0">
-          <i-select v-model="image" style="width:300px; margin-top: 10px">
+          <Select v-model="image" style="width:300px; margin-top: 10px">
             <i-option
               v-for="item in containerList"
               :key="item.id"
               :value="item.show"
               >{{ item.show }}</i-option
             >
-          </i-select>
+          </Select>
           <br />
           <i-input
             v-model="name"
-            placeholder="请输入镜像名称..."
+            placeholder="请输入容器名称..."
             style="width: 300px; margin: 10px"
           ></i-input>
           <br />
@@ -37,6 +36,7 @@
             @click="modal1 = true"
             >拉取镜像</Button
           >
+          <Spin size="large" fix v-if="spinShow"></Spin>
           <Modal
             v-model="modal1"
             title="拉取镜像"
@@ -53,6 +53,7 @@
               placeholder="请输入镜像版本..."
               style="width: 300px; margin: 10px"
             ></i-input>
+            <Spin size="large" fix v-if="spinShow"></Spin>
           </Modal>
         </div>
         <div class="step2" v-if="current == 1">
@@ -100,25 +101,6 @@
             >
           </div>
         </div>
-        <div class="step3" v-if="current == 2">
-          <i-input
-            v-model="values"
-            placeholder="环境变量"
-            style="width: 300px; margin: 10px"
-          ></i-input>
-          <br />
-          <i-input
-            type="textarea"
-            placeholder="值"
-            style="width: 300px"
-          ></i-input>
-          <br />
-          <i-button style="width: 300px; margin: 20px">Add</i-button>
-          <Divider></Divider>
-          <i-button style="width: 300px; margin: 20px" @click="submit()"
-            >完成创建</i-button
-          >
-        </div>
         <i-button
           type="primary"
           @click="previous"
@@ -126,9 +108,12 @@
           style="margin-right: 10px"
           >上一步</i-button
         >
-        <i-button type="primary" @click="next" v-if="current != 2"
+        <i-button type="primary" @click="next" v-if="current != 1"
           >下一步</i-button
         >
+        <i-button type="primary" v-if="current == 1" @click="submit()"
+            >完成创建</i-button
+          >
       </Card>
     </div>
   </div>
@@ -157,6 +142,7 @@ export default {
   },
   data() {
     return {
+      spinShow: false,
       modal1: false,
       value1: "",
       value2: "",
@@ -177,7 +163,21 @@ export default {
   methods: {
     ok() {
       console.log(this.value1);
-      this.$Message.info("Clicked ok");
+      this.spinShow=true;
+      axios
+        .post("http://10.128.27.69:8080/images/pull/", null, {
+          params: {
+            imageName: this.value1,
+            tag: this.value2,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          this.$Message.success("开启成功");
+          this.spinShow=true;
+          location.reload();
+        });
+
     },
     cancel() {
       this.$Message.info("Clicked cancel");

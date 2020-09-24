@@ -31,6 +31,7 @@
                 {{ this.username }}
               </template>
               <Menu-item key="3-1" @click.native="logout">注销</Menu-item>
+              <Menu-item key="3-2" to="/changepassword">修改密码</Menu-item>
             </Submenu>
           </Menu>
         </i-col>
