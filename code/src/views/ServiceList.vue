@@ -38,7 +38,7 @@
               @click="turnon(row)"
               >开启</Button
             >
-            <Button type="error" size="small" @click="remove(row)"
+            <Button :disabled="row.status=='running'" type="error" size="small" @click="remove(row)"
               >删除</Button
             >
           </template>
