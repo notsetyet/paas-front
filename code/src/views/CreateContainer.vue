@@ -93,12 +93,13 @@
               style="width: 300px; margin: 10px"
             ></i-input>
             <br />
+            <h4>已添加端口：{{ports}}</h4>
             <i-button style="width: 150px; margin: 20px" @click="addport()"
               >Add</i-button
             >
-            <i-button style="width: 150px; margin: 20px" @click="showport()"
+            <!--<i-button style="width: 150px; margin: 20px" @click="showport()"
               >显示已添加端口</i-button
-            >
+            >-->
           </div>
         </div>
         <i-button
