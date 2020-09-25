@@ -89,27 +89,22 @@ export default {
         {
           title: "Name",
           key: "name",
-          width: 220,
         },
         {
           title: "Image",
-          width: 220,
           key: "mirror",
         },
         {
           title: "Port",
-          width: 240,
           key: "port",
         },
         {
           title: "Status",
-          width: 220,
           key: "status",
         },
         {
           title: "Action",
           slot: "action",
-          width: 220,
           align: "center",
         },
       ],

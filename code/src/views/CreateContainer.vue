@@ -5,7 +5,7 @@
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
         <BreadcrumbItem>创建容器</BreadcrumbItem>
       </Breadcrumb>
-      <br>
+      <br />
       <h2 style="font-weight: bold;">创建容器</h2>
     </div>
     <div class="layout-content">
@@ -93,7 +93,7 @@
               style="width: 300px; margin: 10px"
             ></i-input>
             <br />
-            <h4>已添加端口：{{ports}}</h4>
+            <h4>已添加端口：{{ ports }}</h4>
             <i-button style="width: 150px; margin: 20px" @click="addport()"
               >Add</i-button
             >
@@ -101,7 +101,14 @@
               >显示已添加端口</i-button
             >-->
           </div>
+          <Divider></Divider>
+          <div class="open">
+          <template>
+            <h4>是否开启终端</h4><i-switch v-model="switch1" />
+          </template>
+          </div>
         </div>
+        <br>
         <i-button
           type="primary"
           @click="previous"
@@ -113,8 +120,8 @@
           >下一步</i-button
         >
         <i-button type="primary" v-if="current == 1" @click="submit()"
-            >完成创建</i-button
-          >
+          >完成创建</i-button
+        >
       </Card>
     </div>
   </div>
@@ -143,6 +150,7 @@ export default {
   },
   data() {
     return {
+      switch1: false,
       spinShow: false,
       modal1: false,
       value1: "",
@@ -164,7 +172,7 @@ export default {
   methods: {
     ok() {
       console.log(this.value1);
-      this.spinShow=true;
+      this.spinShow = true;
       axios
         .post("http://10.251.253.188:8080/images/pull/", null, {
           params: {
@@ -174,11 +182,10 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.$Message.success("开启成功");
-          this.spinShow=true;
+          this.$Message.success("拉取成功");
+          this.spinShow = false;
           location.reload();
         });
-
     },
     cancel() {
       this.$Message.info("Clicked cancel");
@@ -192,6 +199,7 @@ export default {
             image: this.image,
             name: this.name,
             ports: this.ports,
+            isTerminalOpen: this.switch1,
           }
         )
         .then((res) => {
@@ -200,7 +208,10 @@ export default {
         });
     },
     addport() {
-      if (this.port=='') {alert("端口号不能为空");return;}
+      if (this.port == "") {
+        alert("端口号不能为空");
+        return;
+      }
       let tmpData = this.port;
       this.ports.push(tmpData);
       this.$Message.success("添加成功");

@@ -83,32 +83,26 @@ export default {
         {
           title: "Name",
           key: "name",
-          width: 180,
         },
         {
           title: "Owner",
           key: "own",
-          width: 180,
         },
         {
           title: "Image",
-          width: 180,
           key: "mirror",
         },
         {
           title: "Port",
-          width: 200,
           key: "port",
         },
         {
           title: "Status",
-          width: 180,
           key: "status",
         },
         {
           title: "Action",
           slot: "action",
-          width: 200,
           align: "center",
         },
       ],
