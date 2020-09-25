@@ -67,7 +67,7 @@
             this.timer = setTimeout(() => {
                 //设置延迟执行
                 console.log('ok');
-                location.reload();
+                //location.reload();
                 this.$router.push({
                     path: '/',
                     query: {}
