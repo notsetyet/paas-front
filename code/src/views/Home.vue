@@ -3,8 +3,11 @@
 <!--        <Card>-->
 <!--            <img src="../../public/timg.jpg" id="pic" />-->
 <!--        </Card>-->
-        <h1>Welcome to PAAS of BUAA</h1>
-        <p>某小组的云平台</p>
+        <Cell>
+            <img src="../../public/timg.jpg" id="pic" />
+            <h1>Welcome to PAAS of BUAA</h1>
+            <p>某小组的云平台</p>
+        </Cell>
     </div>
 </template>
 
