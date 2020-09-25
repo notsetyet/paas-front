@@ -1,15 +1,15 @@
 <template>
   <div class="manage-container">
     <div class="layout-breadcrumb">
-      <Breadcrumb>
+      <Breadcrumb style="float: left">
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
-        <BreadcrumbItem to="/">管理页</BreadcrumbItem>
         <BreadcrumbItem>管理容器</BreadcrumbItem>
       </Breadcrumb>
+      <br>
       <h2 style="font-weight: bold">管理容器</h2>
     </div>
     <div class="layout-content">
-      <Card>
+      <Card style="margin-top: 30px; ">
         <Table border :columns="columns" :data="data">
           <template slot-scope="{ row }" slot="name">
             <strong>{{ row.name }}</strong>

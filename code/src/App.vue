@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="layout" :class="{ 'layout-hide-text': spanLeft < 5 }">
-      <Row type="flex">
+      <Row type="flex" style="height: 100vw;">
         <i-col :span="spanLeft" class="layout-menu-left">
           <Menu
             active-key="1"
@@ -14,20 +14,20 @@
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
                 服务页
               </template>
-              <Menu-item name="sl" key="1-1" to="/service-list">服务列表</Menu-item>
-              <Menu-item name="cc" key="1-2" to="/create-container">创建容器</Menu-item>
+              <Menu-item name="sl" key="1-1" to="/service-list"><Icon type="ios-list"></Icon>服务列表</Menu-item>
+              <Menu-item name="cc" key="1-2" to="/create-container"><Icon type="ios-add" />创建容器</Menu-item>
             </Submenu>
             <Submenu v-if="uid != null && utype == 0" key="2" name="2">
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
                 管理页
               </template>
-              <Menu-item name="mc" key="2-1" to="/manage-container">管理容器</Menu-item>
+              <Menu-item name="mc" key="2-1" to="/manage-container"><Icon type="md-apps" />管理容器</Menu-item>
             </Submenu>
             <Menu-item name="lr" v-if="uid == null" to="/login">登陆注册</Menu-item>
             <Submenu v-if="uid != null" key="3" name="3">
               <template slot="title">
-                <Icon type="ios-navigate" :size="iconSize"></Icon>
+                <Icon type="ios-person" :size="iconSize"></Icon>
                 {{ this.username }}
               </template>
               <Menu-item name="lo" key="3-1" @click.native="logout">注销</Menu-item>
@@ -35,19 +35,20 @@
             </Submenu>
           </Menu>
         </i-col>
-        <i-col :span="spanRight">
+        <i-col :span="spanRight" style="height: 100%">
           <div class="layout-header">
             <i-button type="text" @click="toggleClick" style="float: left">
               <Icon type="ios-code" size="32"></Icon>
             </i-button>
           </div>
           <router-view />
-          <div class="layout-copy">
-            2020-2020 &copy; PAAS
-          </div>
+<!--          <div class="layout-copy">-->
+<!--            2020-2020 &copy; PAAS-->
+<!--          </div>-->
         </i-col>
       </Row>
     </div>
+
   </div>
 </template>
 
@@ -90,10 +91,12 @@ export default {
       if (this.spanLeft === 5) {
         this.spanLeft = 2;
         this.spanRight = 22;
+
       } else {
         this.spanLeft = 5;
         this.spanRight = 19;
       }
+      console.log('span'+this.spanLeft);
     },
   },
 };
@@ -106,16 +109,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100%;
 }
 
 .layout {
   border: 1px solid #d7dde4;
   background: #f5f7f9;
   position: relative;
-  border-radius: 4px;
+  /*border-radius: 4px;*/
   overflow: hidden;
-  height: 100%;
+  width: 100%;
+  height: 100vw;
+  padding: 0;
+  margin: 0;
 }
 
 .layout-breadcrumb {
@@ -134,14 +139,16 @@ export default {
   padding: 10px;
 }
 
-.layout-copy {
-  text-align: center;
-  padding: 10px 0 20px;
-  color: #9ea7b4;
-}
+/*.layout-copy {*/
+/*  text-align: center;*/
+/*  color: #9ea7b4;*/
+/*  !*position: absolute;*!*/
+
+/*}*/
 
 .layout-menu-left {
   background: #464c5b;
+  height: 100%;
 }
 
 .layout-header {

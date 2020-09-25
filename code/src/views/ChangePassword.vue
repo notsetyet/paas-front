@@ -3,7 +3,6 @@
     <div class="layout-breadcrumb">
       <Breadcrumb style="float: left">
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
-        <BreadcrumbItem to="/">个人页</BreadcrumbItem>
         <BreadcrumbItem>修改密码</BreadcrumbItem>
       </Breadcrumb>
       <h2 style="font-weight: bold;">修改密码</h2>

@@ -1,8 +1,10 @@
 <template>
     <div class="home">
-        <Card>
-            <img src="../../public/timg.jpg" id="pic" />
-        </Card>
+<!--        <Card>-->
+<!--            <img src="../../public/timg.jpg" id="pic" />-->
+<!--        </Card>-->
+        <h1>Welcome to PAAS of BUAA</h1>
+        <p>某小组的云平台</p>
     </div>
 </template>
 

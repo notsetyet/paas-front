@@ -3,13 +3,13 @@
     <div class="layout-breadcrumb">
       <Breadcrumb style="float: left">
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
-        <BreadcrumbItem to="/">服务页</BreadcrumbItem>
         <BreadcrumbItem>创建容器</BreadcrumbItem>
       </Breadcrumb>
+      <br>
       <h2 style="font-weight: bold;">创建容器</h2>
     </div>
     <div class="layout-content">
-      <Card>
+      <Card style="margin-top: 30px; ">
         <Steps :current="current">
           <Step title="请选择镜像"></Step>
           <Step title="配置端口"></Step>
