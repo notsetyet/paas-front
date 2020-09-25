@@ -9,7 +9,7 @@
                   width="auto"
           >
             <div class="layout-logo-left"></div>
-            <Submenu v-if="uid != null" key="1" name="1">
+            <Submenu v-if="uid != null" key="1" name="1"><!---->
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
                 服务页
@@ -17,7 +17,7 @@
               <Menu-item name="sl" key="1-1" to="/service-list"><Icon type="ios-list"></Icon>服务列表</Menu-item>
               <Menu-item name="cc" key="1-2" to="/create-container"><Icon type="ios-add" />创建容器</Menu-item>
             </Submenu>
-            <Submenu v-if="uid != null && utype == 0" key="2" name="2">
+            <Submenu v-if="uid != null && utype == 0" key="2" name="2"><!---->
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
                 管理页

@@ -83,26 +83,26 @@ export default {
         {
           title: "Name",
           key: "name",
-          width: 160,
+          width: 180,
         },
         {
           title: "Owner",
           key: "own",
-          width: 160,
+          width: 180,
         },
         {
           title: "Image",
-          width: 160,
+          width: 180,
           key: "mirror",
         },
         {
           title: "Port",
-          width: 160,
+          width: 200,
           key: "port",
         },
         {
           title: "Status",
-          width: 160,
+          width: 180,
           key: "status",
         },
         {

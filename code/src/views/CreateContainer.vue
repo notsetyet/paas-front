@@ -189,7 +189,7 @@ export default {
           "http://10.251.253.188:8080/containers/create/" +
             localStorage.getItem("uid"),
           {
-            image: "nginx:latest",
+            image: this.image,
             name: this.name,
             ports: this.ports,
           }
@@ -200,6 +200,7 @@ export default {
         });
     },
     addport() {
+      if (this.port=='') {alert("端口号不能为空");return;}
       let tmpData = this.port;
       this.ports.push(tmpData);
       this.$Message.success("添加成功");
