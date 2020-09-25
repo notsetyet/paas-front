@@ -59,11 +59,7 @@
         },*/
         mounted() {
             console.log('mounted');
-            //localStorage.clear();
-            if (localStorage.getItem('username') != null) {
-                this.$Message.success('用户' + localStorage.getItem('username') + '已验证 自动跳转首页');
-                this.goPage();
-            }
+            localStorage.clear();
         },
         methods: {
             goPage: function() {
