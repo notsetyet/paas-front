@@ -3,57 +3,12 @@
     <div class="layout-breadcrumb">
       <Breadcrumb style="float: left">
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
-        <BreadcrumbItem to="/">服务页</BreadcrumbItem>
         <BreadcrumbItem>服务列表</BreadcrumbItem>
       </Breadcrumb>
+      <br>
       <h2 style="font-weight: bold">服务列表</h2>
     </div>
     <div class="layout-content">
-      <!--<Card style="height: 200px">
-        <i-col span="1" offset="1">
-          <h5>CPU</h5>
-          <br />
-          <h5>已使用</h5>
-          <p>1000</p>
-          <br />
-          <h5>总配额</h5>
-          <p>10000</p>
-        </i-col>
-        <i-col span="2" offset="4">
-          <i-circle :percent="80" stroke-color="#5cb85c">
-            <span class="demo-circle-inner">80%</span>
-          </i-circle>
-        </i-col>
-        <i-col span="1" offset="1">
-          <h5>内存(MB)</h5>
-          <br />
-          <h5>已使用</h5>
-          <p>1000</p>
-          <br />
-          <h5>总配额</h5>
-          <p>10000</p>
-        </i-col>
-        <i-col span="2" offset="4">
-          <i-circle :percent="80" stroke-color="#5cb85c">
-            <span class="demo-circle-inner">80%</span>
-          </i-circle>
-        </i-col>
-        <i-col span="1" offset="1">
-          <h5>存储(MB)</h5>
-          <br />
-          <h5>已使用</h5>
-          <p>1000</p>
-          <br />
-          <h5>总配额</h5>
-          <p>10000</p>
-        </i-col>
-        <i-col span="2" offset="4">
-          <i-circle :percent="80" stroke-color="#5cb85c">
-            <span class="demo-circle-inner">80%</span>
-          </i-circle>
-        </i-col>
-      </Card>-->
-
       <Card style="margin-top: 30px; ">
         <i-button
           type="primary"
@@ -83,7 +38,7 @@
               @click="turnon(row)"
               >开启</Button
             >
-            <Button type="error" size="small" @click="remove(row)"
+            <Button :disabled="row.status=='running'" type="error" size="small" @click="remove(row)"
               >删除</Button
             >
           </template>
