@@ -55,14 +55,14 @@
 <script>
   export default {
     mounted() {
-      //this.fresh();
+      this.fresh();
     },
     data() {
       return {
         spanLeft: 5,
         spanRight: 19,
         username: "123",
-        uid: 0,
+        uid: 1,
         utype: 1,
       };
     },
