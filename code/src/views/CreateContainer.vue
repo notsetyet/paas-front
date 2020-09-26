@@ -1,12 +1,12 @@
 <template>
   <div class="create-container">
     <div class="layout-breadcrumb">
-      <Breadcrumb style="float: left">
+      <Breadcrumb style="margin-left: 30px; float: left" separator="=>">
         <BreadcrumbItem></BreadcrumbItem>
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
         <BreadcrumbItem>创建容器</BreadcrumbItem>
       </Breadcrumb>
-      <br />
+      <br><br>
       <h2 style="font-weight: bold;">创建容器</h2>
     </div>
     <div class="layout-content">
