@@ -54,7 +54,7 @@ export default {
           .then((res) => {
             let tmpData = {};
             tmpData.own = res.data;
-            tmpData.name = this.back[i].Names[0];
+            tmpData.name = this.back[i].Names[0].replace("/","");
             tmpData.mirror = this.back[i].Image;
             //   console.log('aaa' + " " + this.back[i].Ports.length);
             tmpData.port = [];

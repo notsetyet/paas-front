@@ -60,7 +60,7 @@ export default {
         for (let i = 0; i < this.back.length; i++) {
         //   console.log( this.back[i].Image);
           let tmpData = {};
-          tmpData.name = this.back[i].Names[0];
+          tmpData.name = this.back[i].Names[0].replace("/","");
           tmpData.mirror = this.back[i].Image;
         //   console.log('aaa' + " " + this.back[i].Ports.length);
           tmpData.port = [];

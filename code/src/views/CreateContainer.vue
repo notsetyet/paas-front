@@ -191,6 +191,8 @@ export default {
       this.$Message.info("Clicked cancel");
     },
     submit() {
+      let abc=0;
+      if (this.switch1==true){abc=1;}
       axios
         .post(
           "http://10.251.253.188:8080/containers/create/" +
@@ -199,7 +201,7 @@ export default {
             image: this.image,
             name: this.name,
             ports: this.ports,
-            isTerminalOpen: this.switch1,
+            isTerminalOpen: abc,
           }
         )
         .then((res) => {
