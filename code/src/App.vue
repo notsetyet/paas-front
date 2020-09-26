@@ -8,7 +8,7 @@
                   theme="dark"
                   width="auto"
           >
-            <div class="layout-logo-left"></div>
+            <!--<div class="layout-logo-left"></div>-->
             <Submenu v-if="uid != null" key="1" name="1"><!-- -->
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
