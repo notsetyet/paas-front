@@ -150,7 +150,7 @@
     height: 30px;
     background: #464c5b;
     border-radius: 3px;
-    margin: 15px auto;
+    margin: 5px auto;
   }
   .layout-ceiling-main a {
     color: #9ba7b5;
