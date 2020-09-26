@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="layout" :class="{ 'layout-hide-text': spanLeft < 5 }">
+    <div class="layout" >
       <Row type="flex" style="height: 100vw;">
         <i-col :span="spanLeft" class="layout-menu-left">
           <Menu
@@ -8,7 +8,10 @@
                   theme="dark"
                   width="auto"
           >
-            <!--<div class="layout-logo-left"></div>-->
+            <!--<div class="layout-logo-left">
+              <h2 style="color:#dcdee2">PaaS云平台</h2>
+            </div>-->
+            <Menu-item to="/"><h2>PaaS云平台</h2></Menu-item>
             <Submenu v-if="uid != null" key="1" name="1"><!-- -->
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
@@ -36,11 +39,6 @@
           </Menu>
         </i-col>
         <i-col :span="spanRight" style="height: 100%">
-          <div class="layout-header">
-            <i-button type="text" @click.native="toggleClick" style="float: left">
-              <Icon type="ios-code" size="20"></Icon>
-            </i-button>
-          </div>
           <router-view />
           <!--          <div class="layout-copy">-->
           <!--            2020-2020 &copy; PAAS-->
@@ -59,8 +57,8 @@
     },
     data() {
       return {
-        spanLeft: 5,
-        spanRight: 19,
+        spanLeft: 4,
+        spanRight: 20,
         username: "123",
         uid: 1,
         utype: 1,
@@ -147,9 +145,9 @@
   }
   .layout-logo-left {
     width: 100%;
-    height: 30px;
-    background: #464c5b;
-    border-radius: 3px;
+    height: 40px;
+    background: #515a6e;
+    border-radius: 0px;
     margin: 5px auto;
   }
   .layout-ceiling-main a {
