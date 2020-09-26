@@ -2,6 +2,7 @@
   <div class="create-container">
     <div class="layout-breadcrumb">
       <Breadcrumb style="float: left">
+        <BreadcrumbItem></BreadcrumbItem>
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
         <BreadcrumbItem>创建容器</BreadcrumbItem>
       </Breadcrumb>

@@ -2,6 +2,7 @@
   <div class="manage-container">
     <div class="layout-breadcrumb">
       <Breadcrumb style="float: left">
+        <BreadcrumbItem></BreadcrumbItem>
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
         <BreadcrumbItem>管理容器</BreadcrumbItem>
       </Breadcrumb>

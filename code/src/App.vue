@@ -9,7 +9,7 @@
                   width="auto"
           >
             <div class="layout-logo-left"></div>
-            <Submenu v-if="uid != null" key="1" name="1"><!-- -->
+            <Submenu  key="1" name="1"><!--v-if="uid != null" -->
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
                 服务页
@@ -17,7 +17,7 @@
               <Menu-item name="sl" key="1-1" to="/service-list"><Icon type="ios-list"></Icon>服务列表</Menu-item>
               <Menu-item name="cc" key="1-2" to="/create-container"><Icon type="ios-add" />创建容器</Menu-item>
             </Submenu>
-            <Submenu v-if="uid != null && utype == 0" key="2" name="2"><!-- -->
+            <Submenu  key="2" name="2"><!--v-if="uid != null && utype == 0" -->
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>
                 管理页
@@ -38,7 +38,7 @@
         <i-col :span="spanRight" style="height: 100%">
           <div class="layout-header">
             <i-button type="text" @click.native="toggleClick" style="float: left">
-              <Icon type="ios-code" size="32"></Icon>
+              <Icon type="ios-code" size="20"></Icon>
             </i-button>
           </div>
           <router-view />
@@ -141,14 +141,14 @@
     height: 100%;
   }
   .layout-header {
-    height: 60px;
+    height: 36px;
     background: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   }
   .layout-logo-left {
-    width: 90%;
+    width: 100%;
     height: 30px;
-    background: #5b6270;
+    background: #464c5b;
     border-radius: 3px;
     margin: 15px auto;
   }
