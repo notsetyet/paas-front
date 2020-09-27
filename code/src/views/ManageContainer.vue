@@ -1,12 +1,12 @@
 <template>
   <div class="manage-container">
     <div class="layout-breadcrumb">
-      <Breadcrumb style="margin-left: 30px; float: left" separator="=>">
+      <Breadcrumb style="margin-left: 30px;margin-top: 30px; float: left">
         <BreadcrumbItem></BreadcrumbItem>
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
         <BreadcrumbItem>管理容器</BreadcrumbItem>
       </Breadcrumb>
-      <br><br>
+      <br><br><br>
       <h2 style="font-weight: bold">管理容器</h2>
     </div>
     <div class="layout-content">
@@ -16,6 +16,7 @@
             <strong>{{ row.name }}</strong>
           </template>
           <template slot-scope="{ row, index }" slot="action">
+          <Spin size="large" fix v-if="spinShow"></Spin>
             <Button
               v-if="row.status == 'running'"
               type="error"
@@ -79,6 +80,7 @@ export default {
   name: "ManageContainer",
   data() {
     return {
+      spinShow: false,
       conList: [{}],
       columns: [
         {
@@ -123,12 +125,14 @@ export default {
     },
     turnoff(r, i) {
       console.log(r.id);
+      this.spinShow=true;
       console.log(i);
       axios
         .get("http://10.251.253.188:8080/containers/stop/" + r.id)
         .then((res) => {
           console.log(res);
           this.$Message.success("关闭成功");
+          this.spinShow=false;
           location.reload();
         });
     },

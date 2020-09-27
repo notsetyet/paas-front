@@ -1,12 +1,12 @@
 <template>
   <div class="servicelist">
     <div class="layout-breadcrumb">
-      <Breadcrumb style="margin-left: 30px; float: left" separator="=>">
+      <Breadcrumb style="margin-left: 30px;margin-top: 30px; float: left">
         <BreadcrumbItem></BreadcrumbItem>
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
         <BreadcrumbItem>服务列表</BreadcrumbItem>
       </Breadcrumb>
-      <br><br>
+      <br><br><br>
       <h2 style="font-weight: bold">服务列表</h2>
     </div>
     <div class="layout-content">
@@ -22,7 +22,13 @@
           <template slot-scope="{ row }" slot="name">
             <strong>{{ row.name }}</strong>
           </template>
+          <template slot-scope="{ row }" slot="port">
+            <p v-for="(pt, index) in row.port" :key="index">
+            <a :href="row.href[index]">{{pt}}</a>
+            </p>
+          </template>
           <template slot-scope="{ row, index }" slot="action">
+            <Spin size="large" fix v-if="spinShow"></Spin>
             <Button
               v-if="row.status=='running'"
               type="error"
@@ -65,6 +71,7 @@ export default {
           tmpData.mirror = this.back[i].Image;
         //   console.log('aaa' + " " + this.back[i].Ports.length);
           tmpData.port = [];
+          tmpData.href = [];
           for (let j = 0; j < this.back[i].Ports.length; j++) {
             tmpData.port[j] =
               "{10.251.253.189:" +
@@ -74,6 +81,7 @@ export default {
               "/" +
               this.back[i].Ports[j].Type +
               "}";
+            tmpData.href[j]="http://10.251.253.189:" +this.back[i].Ports[j].PublicPort;
           }
           tmpData.id = this.back[i].Id;
           tmpData.status = this.back[i].State;
@@ -83,6 +91,7 @@ export default {
   },
   data() {
     return {
+      spinShow: false,
       indeterminate: true,
       checkAll: false,
       checkAllGroup: ["香蕉", "西瓜"],
@@ -97,7 +106,7 @@ export default {
         },
         {
           title: "Port",
-          key: "port",
+          slot: "port",
         },
         {
           title: "Status",
@@ -126,21 +135,25 @@ export default {
     },
     turnoff(r,i){
       console.log(i);
+      this.spinShow=true;
       axios
       .get("http://10.251.253.188:8080/containers/stop/" + r.id)
       .then((res) => {
         console.log(res);
         this.$Message.success("关闭成功");
+        this.spinShow=false;
         location.reload();
       })
     },
     remove(r){
       console.log(r.id);
+      this.spinShow=true;
       axios
       .get("http://10.251.253.188:8080/containers/remove/" + r.id)
       .then((res) => {
         console.log(res);
         this.$Message.success("删除成功");
+        this.spinShow=false;
         location.reload();
       })
     },

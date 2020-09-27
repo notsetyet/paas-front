@@ -1,13 +1,13 @@
 <template>
   <div class="create-container">
     <div class="layout-breadcrumb">
-      <Breadcrumb style="margin-left: 30px; float: left" separator="=>">
+      <Breadcrumb style="margin-left: 30px;margin-top: 30px; float: left">
         <BreadcrumbItem></BreadcrumbItem>
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
         <BreadcrumbItem>创建容器</BreadcrumbItem>
       </Breadcrumb>
-      <br><br>
-      <h2 style="font-weight: bold;">创建容器</h2>
+      <br /><br /><br />
+      <h2 style="font-weight: bold;text-align:center">创建容器</h2>
     </div>
     <div class="layout-content">
       <Card style="margin-top: 30px; ">
@@ -94,8 +94,19 @@
               style="width: 300px; margin: 10px"
             ></i-input>
             <br />
-            <h4>已添加端口：{{ ports }}</h4>
-            <i-button style="width: 150px; margin: 20px" @click="addport()"
+            <Tag
+              type="border"
+              closable
+              color="primary"
+              v-for="item in ports"
+              :key="item"
+              :name="item"
+              @on-close="handleClose2"
+              >{{ item }}</Tag
+            >
+            <br /><i-button
+              style="width: 150px; margin: 20px"
+              @click="addport()"
               >Add</i-button
             >
             <!--<i-button style="width: 150px; margin: 20px" @click="showport()"
@@ -104,12 +115,14 @@
           </div>
           <Divider></Divider>
           <div class="open">
-          <template>
-            <h4>是否开启终端</h4><i-switch v-model="switch1" />
-          </template>
+            <template>
+              <h4>是否开启终端</h4><p>(开启前请确保镜像中开启了ssh服务)</p><br>
+              <i-switch v-model="switch1" />
+              
+            </template>
           </div>
         </div>
-        <br>
+        <br />
         <i-button
           type="primary"
           @click="previous"
@@ -171,6 +184,10 @@ export default {
   },
 
   methods: {
+    handleClose2(event, name) {
+      const index = this.ports.indexOf(name);
+      this.ports.splice(index, 1);
+    },
     ok() {
       console.log(this.value1);
       this.spinShow = true;
@@ -192,8 +209,10 @@ export default {
       this.$Message.info("Clicked cancel");
     },
     submit() {
-      let abc=0;
-      if (this.switch1==true){abc=1;}
+      let abc = 0;
+      if (this.switch1 == true) {
+        abc = 1;
+      }
       axios
         .post(
           "http://10.251.253.188:8080/containers/create/" +
@@ -215,12 +234,13 @@ export default {
         alert("端口号不能为空");
         return;
       }
+      else if (this.ports.indexOf(this.port)!=-1){
+        alert("该端口已存在");
+        return;
+      }
       let tmpData = this.port;
       this.ports.push(tmpData);
       this.$Message.success("添加成功");
-    },
-    showport() {
-      alert(this.ports);
     },
     next() {
       if (this.current == 3) {

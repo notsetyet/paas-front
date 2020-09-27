@@ -11,7 +11,8 @@
             <!--<div class="layout-logo-left">
               <h2 style="color:#dcdee2">PaaS云平台</h2>
             </div>-->
-            <Menu-item to="/"><h2>PaaS云平台</h2></Menu-item>
+            <Menu-item name="paas" to="/"><h2>PaaS云平台</h2></Menu-item>
+            <!--<Menu-item name="test" to="/test"><h2>test</h2></Menu-item>-->
             <Submenu v-if="uid != null" key="1" name="1"><!-- -->
               <template slot="title">
                 <Icon type="ios-navigate" :size="iconSize"></Icon>

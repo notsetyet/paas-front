@@ -24,6 +24,11 @@ const routes = [
         component: () => import('../views/ServiceList.vue')
     },
     {
+        path: '/test',
+        name: 'Xterm',
+        component: () => import('../views/test.vue')
+    },
+    {
         path: '/create-container',
         name: 'CreateContainer',
         component: () => import('../views/CreateContainer.vue')
