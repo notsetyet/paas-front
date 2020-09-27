@@ -15,6 +15,11 @@
           <template slot-scope="{ row }" slot="name">
             <strong>{{ row.name }}</strong>
           </template>
+          <template slot-scope="{ row }" slot="port">
+            <p v-for="(pt, index) in row.port" :key="index">
+            <a :href="row.href[index]">{{pt}}</a>
+            </p>
+          </template>
           <template slot-scope="{ row, index }" slot="action">
           <Spin size="large" fix v-if="spinShow"></Spin>
             <Button
@@ -60,6 +65,7 @@ export default {
             tmpData.mirror = this.back[i].Image;
             //   console.log('aaa' + " " + this.back[i].Ports.length);
             tmpData.port = [];
+            tmpData.href = [];
             for (let j = 0; j < this.back[i].Ports.length; j++) {
               tmpData.port[j] =
                 "{10.251.253.189:" +
@@ -69,6 +75,7 @@ export default {
                 "/" +
                 this.back[i].Ports[j].Type +
                 "}";
+              tmpData.href[j]="http://10.251.253.189:" +this.back[i].Ports[j].PublicPort;
             }
             tmpData.id = this.back[i].Id;
             tmpData.status = this.back[i].State;
@@ -97,7 +104,7 @@ export default {
         },
         {
           title: "Port",
-          key: "port",
+          slot: "port",
         },
         {
           title: "Status",

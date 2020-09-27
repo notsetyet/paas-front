@@ -1,11 +1,13 @@
 <template>
   <div class="change-password">
     <div class="layout-breadcrumb">
-      <Breadcrumb style="float: left">
+      <Breadcrumb style="margin-left: 30px;margin-top: 30px; float: left">
+        <BreadcrumbItem></BreadcrumbItem>
         <BreadcrumbItem to="/">首页</BreadcrumbItem>
         <BreadcrumbItem>修改密码</BreadcrumbItem>
       </Breadcrumb>
-      <h2 style="font-weight: bold;">修改密码</h2>
+      <br><br><br>
+      <h2 style="font-weight: bold">修改密码</h2>
     </div>
     <div class="layout-content">
       <Card>
