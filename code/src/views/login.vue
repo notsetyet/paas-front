@@ -100,9 +100,9 @@ export default {
         this.$router.push({
           path: "/",
           query: {},
-        });
+        });location.reload();
       }, 1600);
-      location.reload();
+      
     },
     login: function() {
       if (this.loginInfo.userName == "" || this.loginInfo.passWord == "") {

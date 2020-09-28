@@ -22,12 +22,14 @@
         </Collapse>
       </CellGroup>
       <br />
-
+      <i-button type="primary" @click="showstudent" style="margin-right: 10px"
+        >学生名单</i-button
+      >
       <i-button type="primary" @click="value3 = true" style="margin-right: 10px"
         >导入学生</i-button
       >
       <i-button type="primary" :to="'/create-containers/'+cid" style="margin-right: 10px"
-        >创建虚拟机</i-button
+        >创建容器</i-button
       >
       <Drawer
         title="导入学生"
@@ -89,6 +91,18 @@ export default {
   },
 
   methods: {
+    showstudent(){
+      let tmp='';
+      axios.get("http://10.251.253.188:8080/user/getByCourse/"+this.cid).then((res) => {
+      console.log(res.data);
+      for (var i=0;i<res.data.length;i++){
+        tmp+=res.data[i].username;
+        if (i!=res.data.length-1)
+        tmp+=",";
+      }
+      alert(tmp)
+    });
+    },
       create(){
           axios.post("http://10.251.253.188:8080/courses/createContainer/"+this.cid).then((res) => {
           console.log(res.data);
