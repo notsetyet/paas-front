@@ -28,6 +28,15 @@
               </template>
               <Menu-item name="mc" key="2-1" to="/manage-container"><Icon type="md-apps" />管理容器</Menu-item>
             </Submenu>
+            <Submenu v-if="uid != null" key="4" name="4"><!-- -->
+              <template slot="title">
+                <Icon type="ios-navigate" :size="iconSize"></Icon>
+                课程页
+              </template>
+              <Menu-item v-if="utype == 0" name="ccourse" key="4-1" to="/create-course"><Icon type="ios-add"></Icon>创建课程</Menu-item>
+              <Menu-item v-if="utype == 1" name="mcourse" key="4-2" to="/my-course"><Icon type="ios-list" />我的课程</Menu-item>
+              <Menu-item v-if="utype == 0" name="mcoursea" key="4-2" to="/my-course-admin"><Icon type="ios-list" />我的课程</Menu-item>
+            </Submenu>
             <Menu-item name="lr" v-if="uid == null" to="/login">登陆注册</Menu-item>
             <Submenu v-if="uid != null" key="3" name="3">
               <template slot="title">
@@ -113,7 +122,7 @@
     /*border-radius: 4px;*/
     overflow: hidden;
     width: 100%;
-    height: 100vw;
+    height: 50vw;
     padding: 0;
     margin: 0;
   }
